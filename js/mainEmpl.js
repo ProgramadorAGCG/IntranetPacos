@@ -24,6 +24,7 @@ window.addEventListener('load', (e) => {
     }
     if (url === "/pages/trabajadores.html") {
         empSelect();
+        AdminSelect();
     }
     // if (url === "/crearExcel.html") { archivoCargar(); }
 });
