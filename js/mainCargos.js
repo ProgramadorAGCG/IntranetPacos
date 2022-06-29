@@ -85,7 +85,6 @@ function cargoGet(id) {
     console.log("el id es:", id);
     $.ajax({
         type: "GET",
-        // url: "http://localhost:5000/curso/get/" + id + "/",
         url: "http://127.0.0.1:5000/cargos/get/" + id + "/",
         dataType: "json",
         success: function (data) {
