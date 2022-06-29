@@ -2,6 +2,10 @@
 <html lang="en">
 
 <head>
+    <!-- INICIO DE VALIDADOR -->
+    <link href="${pageContext.request.contextPath}/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/bootstrapValidator/css/bootstrapValidator.min.css" rel="stylesheet">
+    <!-- FIN DE VALIDADOR -->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -58,7 +62,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title">
-                        Registrar trabajadores
+                        REGISTRAR TRABAJADOR
                     </h4>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
@@ -66,23 +70,26 @@
                 <!-- Modal body -->
                 <!-- el problema esta aqui, quitarlo o modificarlo bien -->
                 <div class="modal-body">
+                    <!-- <form action="#" class="formulario" method="POST" enctype="multipart/form-data" id="formulario" > -->
                     <form action="#" class="formulario" method="POST" enctype="multipart/form-data" id="formulario">
                         <input type="hidden" name="txtidEmpleado" id="txtidEmpleado">
                         <div class="form-group">
-                            <label for="email">Nombre</label>
+                            <label for="email">Nombre:</label>
                             <input type="text" class="ferValid form-control" name="txtnombreEmpleado2"
-                                placeholder="Enter name" id="txtnombreEmpleado2">
+                            placeholder="Ingrese su nombre" id="txtnombreEmpleado2" data-toggle="tooltip"
+                                title="Su nombre debe ser igual o mayor a 3 dígitos" data-placement="right">
                         </div>
                         <div class="form-group">
                             <label for="pwd">Correo:</label>
                             <input type="text" class="form-control" name="txtcorreoEmpleado2"
-                                placeholder="Enter creditos" id="txtcorreoEmpleado2">
+                                placeholder="example@gmail.com" id="txtcorreoEmpleado2">
                         </div>
                         <div class="form-group">
 
                             <label for="email2">Contraseña:</label>
                             <input type="password" class="form-control" name="txtpasswordEmpleado2"
-                                placeholder="Ingrese su contraseña" id="txtpasswordEmpleado2">
+                                id="txtpasswordEmpleado2" placeholder="***********" data-toggle="tooltip" title="min: 3"
+                                data-placement="right">
                             <div class="input-group-append" style="display: flexbox !important;">
                                 <button id="show_password" class="btn btn-primary" type="button"
                                     onclick="mostrarPassword()">
@@ -93,7 +100,8 @@
                         <div class="form-group">
                             <label for="email3">Encuestas Realizadas:</label>
                             <input type="text" class="ferValid2 form-control" name="txtencuestasRealizadas2"
-                                placeholder="Enter name" id="txtencuestasRealizadas2">
+                                id="txtencuestasRealizadas2" data-toggle="tooltip" title="Ingrese sólo números"
+                                data-placement="right">
                         </div>
                         <div class="form-group">
                             <label for="pwd3">Estado:</label>
@@ -102,11 +110,13 @@
                         </div>
                         <div class="form-group">
                             <label for="pwd4">ID Cargo:</label>
-                            <input type="text" class="ferValid2 form-control" name="txtidCargo2"
-                                placeholder="Enter creditos" id="txtidCargo2">
+                            <input type="text" class="ferValid2 form-control" name="txtidCargo2" id="txtidCargo2"
+                                data-toggle="tooltip" title="ingrese solo números" data-placement="right">
                         </div>
-                        <button type="submit" id="btnEnviarI" class="btn btn-primary" class="close"
-                            data-dismiss="modal">Submit</button>
+                        <div class="form-group">
+                            <button type="submit" id="btnEnviarI" class="btn btn-primary" class="close"
+                                data-dismiss="modal">Añadir trabajador</button>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -130,15 +140,18 @@
                     </h4>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
-
                 <!-- Modal body -->
                 <div class="modal-body">
                     <div class="modal-body">
                         <div class="tablaResponsive">
                             <div class="form-group">
-                                <label for="usr">Cargos activos</label>
-                                <input type="text" class="form-control" id="txtnombreCargo" name="txtnombreCargo">
-                                <button type="button" class="btn btn-success" onclick=cargoInsert()>Agregar</button>
+                                <!-- <label for="usr">Cargos activos</label> -->
+                                <input type="text" class="form-control" id="txtnombreCargo" name="txtnombreCargo"
+                                    placeholder="Nombre del cargo">
+                            </div>
+                            <div class="form-group">
+                                <button type="button" class="btn btn-success" onclick=cargoInsert()
+                                    id="limpiarAgregar">Agregar</button>
                             </div>
                             <table class="table table-bordered" style="text-align: center;">
                                 <thead>
@@ -181,7 +194,7 @@
                         <input type="hidden" name="txtidCargo2" id="txtidCargo2">
                         <div class="form-group">
                             <label for="email">Nombre del cargo:</label>
-                            <input type="text" class="form-control" name="txtnombreCargo2" placeholder="Enter name"
+                            <input type="text" class="form-control" name="txtnombreCargo2"
                                 id="txtnombreCargo2">
                         </div>
                         <div class="form-group" style="align-content: center;text-align: center;">
@@ -353,17 +366,19 @@
                             <div class="form-group">
                                 <label for="email">Nombre del empleado:</label>
                                 <input type="text" class="ferValid form-control" name="txtnombreEmpleado"
-                                    placeholder="Enter name" id="txtnombreEmpleado">
+                                    placeholder="Ingrese su nombre" id="txtnombreEmpleado" data-toggle="tooltip"
+                                    title="su nombre debe ser igual o mayor a 3 dígitos" data-placement="bottom">
                             </div>
                             <div class="form-group">
                                 <label for="pwd">Correo:</label>
                                 <input type="text" class="form-control" name="txtcorreoEmpleado"
-                                    placeholder="Enter creditos" id="txtcorreoEmpleado">
+                                    placeholder="example@gmail.com" id="txtcorreoEmpleado">
                             </div>
                             <div class="form-group">
                                 <label for="email2">Contraseña:</label>
                                 <input type="password" class="form-control" name="txtpasswordEmpleado"
-                                    placeholder="Ingrese su contraseña" id="txtpasswordEmpleado">
+                                    placeholder="Ingrese su contraseña" id="txtpasswordEmpleado" data-toggle="tooltip"
+                                    title="min: 3" data-placement="right">
                                 <button id="show_password" class="btn btn-primary" type="button"
                                     onclick="mostrarPassword()">
                                     <span class="fa fa-eye-slash icon"></span>
@@ -372,20 +387,20 @@
                             <div class="form-group">
                                 <label for="email3">Encuestas Realizadas:</label>
                                 <input type="text" class="ferValid2 form-control" name="txtencuestasRealizadas"
-                                    placeholder="Enter name" id="txtencuestasRealizadas">
+                                    id="txtencuestasRealizadas" data-toggle="tooltip" title="Ingrese sólo números"
+                                    data-placement="right">
                             </div>
                             <div class="form-group">
                                 <label for="pwd3">Estado:</label>
-                                <input type="text" class="form-control" name="txtestado" placeholder="Enter creditos"
-                                    id="txtestado" disabled>
+                                <input type="text" class="form-control" name="txtestado" id="txtestado" disabled>
                             </div>
                             <div class="form-group">
                                 <label for="pwd4">ID Cargo:</label>
-                                <input type="text" class="ferValid2 form-control" name="txtidCargo"
-                                    placeholder="Enter creditos" id="txtidCargo">
+                                <input type="text" class="ferValid2 form-control" name="txtidCargo" id="txtidCargo"
+                                    data-toggle="tooltip" title="ingrese solo números" data-placement="right">
                             </div>
                             <button type="submit" id="btnEnviarE" class="btn btn-primary" class="close"
-                                data-dismiss="modal">Submit</button>
+                                data-dismiss="modal">Actualizar empleado</button>
                         </form>
                     </div>
                 </div>

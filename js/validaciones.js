@@ -10,21 +10,24 @@ $("input.ferValid").bind('keypress', function (event) {
 // mostrar contraseña
 function mostrarPassword() {
     var cambio = document.getElementById("txtpasswordEmpleado2");
+    var cambio2 = document.getElementById("txtpasswordEmpleado");
     if (cambio.type == "password") {
         cambio.type = "text";
+        cambio2.type = "text";
         $('.icon').removeClass('fa fa-eye-slash').addClass('fa fa-eye');
     } else {
         cambio.type = "password";
+        cambio2.type = "password";
         $('.icon').removeClass('fa fa-eye').addClass('fa fa-eye-slash');
     }
 }
 
-$(document).ready(function () {
-    //CheckBox mostrar contraseña
-    $('#ShowPassword').click(function () {
-        $('#Password').attr('type', $(this).is(':checked') ? 'text' : 'password');
-    });
-});
+// $(document).ready(function () {
+//     //CheckBox mostrar contraseña
+//     $('#ShowPassword').click(function () {
+//         $('#Password').attr('type', $(this).is(':checked') ? 'text' : 'password');
+//     });
+// });
 // Solo números
 $("input.ferValid2").bind('keypress', function (event) {
     var regex = new RegExp("^[0-9]+$");
@@ -33,5 +36,13 @@ $("input.ferValid2").bind('keypress', function (event) {
         event.preventDefault();
         return false;
     }
+});
+// limpiar input de cargos
+$('#limpiarAgregar').click(function () {
+    $('input[type="text"]').val('');
+});
+// mostrar un tooltip
+$(document).ready(function () {
+    $('[data-toggle="tooltip"]').tooltip();
 });
 // faltaria validar estos datos con python

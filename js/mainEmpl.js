@@ -148,7 +148,7 @@ function empGet(id) { /*27*/
             $('#txtencuestasRealizadas').val(data["resultado"]["encuestasRealizadas"]);
             $('#txtestado').val(data["resultado"]["estado"]);
             $('#txtidCargo').val(data["resultado"]["idCargo"]);
-            $('#tituloModal').html("Actualizando al empleado: <br>" + data["resultado"]["nombreEmpleado"]);
+            $('#tituloModal').html("Actualizando datos del empleado: <br>" + data["resultado"]["nombreEmpleado"]);
         }
     });
 }

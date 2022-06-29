@@ -44,24 +44,41 @@ function cargosSelect() {
         success: function (data) {
             var tabla = '';
             $.each(data["resultado"], function (llave, valor) {
-                // var template = '<div class="tabla table-responsive">';
-                var template = '<tr>';
-                template += '<td>' + valor["idCargo"] + '</td>';
-                template += '<td>' + valor["nombreCargo"] + '</td>';
-                template += '<td>' + valor["estado"] + '</td>';
-                template += '<td class="grupoBotones">';
-                template += '<div class="btn-group">';
-                template += '<button class="btn">';
-                // template += '<a href="#" class="btn btn-warning" data-toggle="modal" data-target="#myModal3" onclick=cargoGet(' + valor["idCargo"] + ')><i class="bx bx-info-circle"></i></a>';
-                template += '<a href="#" class="btn btn-warning" data-toggle="modal" data-target="#myModal2X" onclick=cargoGet(' + valor["idCargo"] + ')><i class="bx bx-info-circle"></i></a>';
-                template += '</button>';
-                template += '<button class="btn">';
-                template += '<a href="#" class="btn btn-danger" onclick="return deshabilitar(' + valor["idCargo"] + ')"><i class="bx bxs-trash-alt"></i></a>';
-                template += '</button>';
-                template += '</div>';
-                template += '</td>';
-                template += '</tr>';
-                tabla += template;
+                if (valor["idCargo"] == 1) {
+                    var template = '<tr>';
+                    template += '<td>' + valor["idCargo"] + '</td>';
+                    template += '<td>' + valor["nombreCargo"] + '</td>';
+                    template += '<td>' + valor["estado"] + '</td>';
+                    template += '<td class="grupoBotones">';
+                    template += '<div class="btn-group">';
+                    template += '<button class="btn">';
+                    template += '<a href="#" class="btn btn-warning" data-toggle="modal" data-target="#myModal2X" onclick=cargoGet(' + valor["idCargo"] + ')><i class="bx bx-info-circle"></i></a>';
+                    template += '</button>';
+                    // template += '<button class="btn">';
+                    // template += '<a href="#" class="btn btn-danger" onclick="return deshabilitar(' + valor["idCargo"] + ')"><i class="bx bxs-trash-alt"></i></a>';
+                    // template += '</button>';
+                    template += '</div>';
+                    template += '</td>';
+                    template += '</tr>';
+                    tabla += template;
+                } else {
+                    var template = '<tr>';
+                    template += '<td>' + valor["idCargo"] + '</td>';
+                    template += '<td>' + valor["nombreCargo"] + '</td>';
+                    template += '<td>' + valor["estado"] + '</td>';
+                    template += '<td class="grupoBotones">';
+                    template += '<div class="btn-group">';
+                    template += '<button class="btn">';
+                    template += '<a href="#" class="btn btn-warning" data-toggle="modal" data-target="#myModal2X" onclick=cargoGet(' + valor["idCargo"] + ')><i class="bx bx-info-circle"></i></a>';
+                    template += '</button>';
+                    template += '<button class="btn">';
+                    template += '<a href="#" class="btn btn-danger" onclick="return deshabilitar(' + valor["idCargo"] + ')"><i class="bx bxs-trash-alt"></i></a>';
+                    template += '</button>';
+                    template += '</div>';
+                    template += '</td>';
+                    template += '</tr>';
+                    tabla += template;
+                }
             });
             $('#contenido3').html(tabla);
         }
