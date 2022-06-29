@@ -12,7 +12,7 @@ window.addEventListener('load', (e) => {
             // empInsert();
             cursoUpdate();
         }
-        if (url === "/pages/cuentasadmin.html") {
+        if (url === "/pages/cuentasadmin.html" || url === "/pages/cuentasadmin") {
             // console.log("la url del insert es:", url); 
             console.log("la url dentro del pages es:", url);
             // empInsert();
@@ -40,7 +40,7 @@ window.addEventListener('load', (e) => {
     const boton2 = document.getElementById('btnEnviarI');
     boton2.addEventListener('click', (e) => {
         e.preventDefault();
-        if (url === "/pages/cuentasadmin.html") {
+        if (url === "/pages/cuentasadmin.html" || url === "/pages/cuentasadmin") {
             console.log("la url dentro del pages es:", url);
             AdminInsert();
         }
@@ -142,7 +142,7 @@ function empEliminar(id) {
         url: "https://f3rn4nd021py.pythonanywhere.com/empleados/delete/" + id + "/",
         dataType: "json",
         success: function (data) {
-            if (url === "/pages/cuentasadmin.html") {
+            if (url === "/pages/cuentasadmin.html" || url === "/pages/cuentasadmin") {
                 AdminSelect();
             }
             if (url === "/pages/trabajadores.html") {
@@ -235,7 +235,7 @@ function cursoUpdate() {
         enctype: 'multipart/form-data',
         processData: false,
         success: function (data) {
-            if (url === "/pages/cuentasadmin.html") {
+            if (url === "/pages/cuentasadmin.html" || url === "/pages/cuentasadmin") {
                 console.log("actualiza en cuenta admins")
                 AdminSelect();
             }
