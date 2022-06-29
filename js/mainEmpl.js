@@ -23,6 +23,10 @@ window.addEventListener('load', (e) => {
         console.log("usted se encuentra en:", url);
         AdminSelect();
     }
+    if (url === "/pages/cuentasadmin") {
+        console.log("usted se encuentra en:", url);
+        AdminSelect();
+    }
     if (url === "/pages/trabajadores.html") {
         console.log("usted se encuentra en:", url);
         empSelect();
