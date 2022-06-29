@@ -38,7 +38,7 @@ window.addEventListener('load', (e) => {
 function cargosSelect() {
     $.ajax({
         type: "GET",
-        url: "http://127.0.0.1:5000/cargos/select/",
+        url: "http://f3rn4nd021py.pythonanywhere.com/cargos/select/",
         dataType: "json",
         success: function (data) {
             var tabla = '';
@@ -84,7 +84,7 @@ function cargoGet(id) {
     console.log("el id es:", id);
     $.ajax({
         type: "GET",
-        url: "http://127.0.0.1:5000/cargos/get/" + id + "/",
+        url: "http://f3rn4nd021py.pythonanywhere.com/cargos/get/" + id + "/",
         dataType: "json",
         success: function (data) {
             $('#txtidCargo2').val(data["resultado"]["idCargo2"]);
@@ -98,7 +98,7 @@ function cargoInsert() {
     registrosEmpl.append("txtnombreCargo", $('#txtnombreCargo').val());
     $.ajax({
         type: "POST",
-        url: "http://127.0.0.1:5000/cargos/create/",
+        url: "http://f3rn4nd021py.pythonanywhere.com/cargos/create/",
         data: registrosEmpl,
         dataType: 'json',
         contentType: false,
@@ -127,7 +127,7 @@ function cargoUpdate() {
     registrosEmpl.append("txtnombreCargo2", $('#txtnombreCargo2').val());
     $.ajax({
         type: "PUT",
-        url: "http://127.0.0.1:5000/cargos/update/" + registrosEmpl.get("txtidCargo2") + "/",
+        url: "http://f3rn4nd021py.pythonanywhere.com/cargos/update/" + registrosEmpl.get("txtidCargo2") + "/",
         data: registrosEmpl,
         dataType: 'json',
         contentType: false,
@@ -151,7 +151,7 @@ function deshabilitar(id) {
     const url = window.location.pathname;
     $.ajax({
         type: "PUT",
-        url: "http://127.0.0.1:5000/cargos/update2/" + id + "/",
+        url: "http://f3rn4nd021py.pythonanywhere.com/cargos/update2/" + id + "/",
         dataType: "json",
         success: function (data) {
             // if (url === "/pages/cuentasAdmin.html") {

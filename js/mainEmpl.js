@@ -48,7 +48,7 @@ function empSelect() {
     $.ajax({
         type: "GET",
         // url: "http://localhost:5000/curso/select/",
-        url: "http://127.0.0.1:5000/empleados/select/",
+        url: "http://f3rn4nd021py.pythonanywhere.com/empleados/select/",
         dataType: "json",
         success: function (data) {
             var tabla = '';
@@ -81,7 +81,7 @@ function AdminSelect() {
     $.ajax({
         type: "GET",
         // url: "http://localhost:5000/curso/select/",  
-        url: "http://127.0.0.1:5000/admins/select/",
+        url: "http://f3rn4nd021py.pythonanywhere.com/admins/select/",
         dataType: "json",
         success: function (data) {
             var tabla = '';
@@ -115,7 +115,7 @@ function empGet(id) { /*27*/
     console.log("el id es:", id);
     $.ajax({
         type: "GET",
-        url: "http://127.0.0.1:5000/empleados/get/" + id + "/",
+        url: "http://f3rn4nd021py.pythonanywhere.com/empleados/get/" + id + "/",
         dataType: "json",
         success: function (data) {
             $('#txtidEmpleado').val(data["resultado"]["idEmpleado"]);
@@ -133,7 +133,7 @@ function empEliminar(id) {
     const url = window.location.pathname;
     $.ajax({
         type: "DELETE",
-        url: "http://127.0.0.1:5000/empleados/delete/" + id + "/",
+        url: "http://f3rn4nd021py.pythonanywhere.com/empleados/delete/" + id + "/",
         dataType: "json",
         success: function (data) {
             if (url === "/pages/cuentasAdmin.html") {
@@ -168,7 +168,7 @@ function empInsert() {
     $.ajax({
         type: "POST",
         // url: "http://localhost:5000/curso/create/",
-        url: "http://127.0.0.1:5000/empleados/create/",
+        url: "http://f3rn4nd021py.pythonanywhere.com/empleados/create/",
         data: registrosEmpl,
         dataType: 'json',
         contentType: false,
@@ -193,7 +193,7 @@ function AdminInsert() {
     $.ajax({
         type: "POST",
         // url: "http://localhost:5000/curso/create/",
-        url: "http://127.0.0.1:5000/empleados/create/",
+        url: "http://f3rn4nd021py.pythonanywhere.com/empleados/create/",
         data: registrosEmpl,
         dataType: 'json',
         contentType: false,
@@ -226,7 +226,7 @@ function cursoUpdate() {
     $.ajax({
         type: "PUT",
         // url: "http://localhost:5000/empleados/update/" + registrosEmpl.get("txtidEmpleado") + "/",
-        url: "http://127.0.0.1:5000/empleados/update/" + registrosEmpl.get("txtidEmpleado") + "/",
+        url: "http://f3rn4nd021py.pythonanywhere.com/empleados/update/" + registrosEmpl.get("txtidEmpleado") + "/",
         data: registrosEmpl,
         dataType: 'json',
         contentType: false,
