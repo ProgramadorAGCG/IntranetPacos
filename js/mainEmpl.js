@@ -157,7 +157,7 @@ function empEliminar(id) {
     const url = window.location.pathname;
     $.ajax({
         type: "DELETE",
-        url: "http://localhost:5000/empleados/delete/" + id + "/",
+        url: "http://127.0.0.1:5000/empleados/delete/" + id + "/",
         dataType: "json",
         success: function (data) {
             if (url === "/pages/cuentasAdmin.html") {
