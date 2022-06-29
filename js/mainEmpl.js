@@ -18,16 +18,8 @@ window.addEventListener('load', (e) => {
             // empInsert();
             cursoUpdate();
         }
-        // else if (url === "/crearExcel.html") { insertarDatosExcel(); }
-        // else {
-        //     // console.log("estoy en:", url);
-        //     console.log("la url dentro del update es:", url);
-        //     cursoUpdate();
-        // }
     });
     if (url === "/pages/cuentasAdmin.html") {
-        //     // console.log("la url del insert es:", url); 
-        //     console.log("la url dentro del pages es:", url);
         AdminSelect();
     }
     if (url === "/pages/trabajadores.html") {
@@ -41,31 +33,15 @@ window.addEventListener('load', (e) => {
     const boton = document.getElementById('btnEnviarI');
     boton.addEventListener('click', (e) => {
         e.preventDefault();
-        // if (url === "/create.html") { empInsert(); }
-        // if (url === "/pages/empInsert.html") { empInsert(); }
         if (url === "/pages/cuentasAdmin.html") {
-            // console.log("la url del insert es:", url); 
             console.log("la url dentro del pages es:", url);
             AdminInsert();
         }
         if (url === "/pages/trabajadores.html") {
-            // console.log("la url del insert es:", url); 
             console.log("la url dentro del pages es:", url);
             empInsert();
         }
-        // else if (url === "/crearExcel.html") { insertarDatosExcel(); }
-        // else {
-        //     // console.log("estoy en:", url);
-        //     console.log("la url dentro del update es:", url);
-        //     cursoUpdate();
-        // }
     });
-    // if (url === "/pages/cuentasAdmin.html") {
-    //     AdminSelect();
-    // }
-    // if (url === "/pages/trabajadores.html") {
-    //     empSelect();
-    // }
 });
 
 function empSelect() {
@@ -258,6 +234,7 @@ function cursoUpdate() {
         processData: false,
         success: function (data) {
             if (url === "/pages/cuentasAdmin.html") {
+                console.log("actualiza en cuenta admins")
                 AdminSelect();
             }
             if (url === "/pages/trabajadores.html") {
