@@ -20,11 +20,12 @@ window.addEventListener('load', (e) => {
         }
     });
     if (url === "/pages/cuentasAdmin.html") {
+        console.log("usted se encuentra en:", url);
         AdminSelect();
     }
     if (url === "/pages/trabajadores.html") {
         empSelect();
-        AdminSelect();
+        // AdminSelect();
     }
     // if (url === "/crearExcel.html") { archivoCargar(); }
 });
