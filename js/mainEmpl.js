@@ -34,7 +34,6 @@ window.addEventListener('load', (e) => {
         empSelect();
     }
     // if (url === "/crearExcel.html") { archivoCargar(); }
-
 });
 window.addEventListener('load', (e) => {
     const url = window.location.pathname;
@@ -77,40 +76,8 @@ function empSelect() {
         dataType: "json",
         success: function (data) {
             var tabla = '';
-            // $.each(data["resultado"], function (llave, valor) {
-
-            //     var template = '<div class="card bg-info carta">';
-            //     template += '<div class="card-body">';
-            //     template += '<p>ID: ' + valor["idEmpleado"] + '</p><hr>';
-            //     template += '<p>NOMBRE:<br>' + valor["nombreEmpleado"] + '</p><hr>';
-            //     template += '<p>CORREO:<br>' + valor["correoEmpleado"] + '</p><hr>';
-            //     // template += '<p>CONTRASEÑA:<br>' + valor["passwordEmpleado"] + '</p><hr>';
-            //     // template += '<p>' + valor["imagen"] + '</p>';
-            //     // template += '<p>IMAGEN:</p><img src="data:image;base64,' + valor["imagen"] + '"< /><hr>';
-            //     template += '<p>ENCUESTAS:<br>' + valor["encuestasRealizadas"] + '</p><hr>';
-            //     template += '<p>ESTADO:<br>' + valor["estado"] + '</p><hr>';
-            //     template += '<p>ID CARGO:<br>' + valor["idCargo"] + '</p>';
-            //     template += '<div><a href="#" class="btn btn-warning" data-toggle="modal" data-target="#myModal" onclick=empGet(' + valor["idEmpleado"] + ')><i class="bx bx-info-circle"></i></a>';
-            //     template += '<a href="#" class="btn btn-danger" onclick="return empEliminar(' + valor["idEmpleado"] + ')"><i class="bx bxs-trash-alt"></i></a></div>';
-            //     template += '</div></div>';
-            //     tabla += template;
-            // });
             $.each(data["resultado"], function (llave, valor) {
-                // var template = '<div class="tabla table-responsive">';
                 var template = '<tr>';
-                // template = '<table class="table table-bordered table-hover">';
-                // template += '<thead>';
-                // template += '<tr>';
-                // template += '<th>ID</th>';
-                // template += '<th>Nombre</th>';
-                // template += '<th>Correo</th>';
-                // template += '<th>Cant. Encuestas</th>';
-                // template += '<th>Estado</th>';
-                // template += '<th>ID CARGO</th>';
-                // template += '<th>ACCIONES</th>';
-                // template += '</tr>';
-                // template += '</thead>';
-                // template += '<tbody id="tablaTrabajadores">';
                 template += '<td>' + valor["idEmpleado"] + '</td>';
                 template += '<td>' + valor["nombreEmpleado"] + '</td>';
                 template += '<td>' + valor["correoEmpleado"] + '</td>';
@@ -172,8 +139,6 @@ function empGet(id) { /*27*/
     console.log("el id es:", id);
     $.ajax({
         type: "GET",
-        /** http://localhost:5000/curso/get/27 */
-        // url: "http://localhost:5000/curso/get/" + id + "/",
         url: "http://127.0.0.1:5000/empleados/get/" + id + "/",
         dataType: "json",
         success: function (data) {
@@ -183,7 +148,7 @@ function empGet(id) { /*27*/
             $('#txtencuestasRealizadas').val(data["resultado"]["encuestasRealizadas"]);
             $('#txtestado').val(data["resultado"]["estado"]);
             $('#txtidCargo').val(data["resultado"]["idCargo"]);
-            $('#tituloModal').html("Actualizando al empleado: " + data["resultado"]["nombreEmpleado"]);
+            $('#tituloModal').html("Actualizando al empleado: <br>" + data["resultado"]["nombreEmpleado"]);
         }
     });
 }
@@ -235,7 +200,8 @@ function empInsert() {
         // con processData evitamos que datos enviados se conviertan en tipo texto en lugar json
         processData: false,
         success: function (data) {
-            window.location.href = "/pages/trabajadores.html";
+            // window.location.href = "/pages/trabajadores.html";
+            empSelect();
         }
     });
     // este "formulario" es un id, con la funcion reset limpiamos todo el formulario
@@ -259,7 +225,8 @@ function AdminInsert() {
         // con processData evitamos que datos enviados se conviertan en tipo texto en lugar json
         processData: false,
         success: function (data) {
-            window.location.href = "/pages/cuentasAdmin.html";
+            // window.location.href = "/pages/cuentasAdmin.html";
+            AdminSelect();
         }
     });
     // este "formulario" es un id, con la funcion reset limpiamos todo el formulario
@@ -302,7 +269,6 @@ function cursoUpdate() {
     });
     // limpiar contraseña
     formulario2.reset();
-
 }
 
 

@@ -15,7 +15,7 @@ function filtroTablaTrabajadores() {
     $(document).ready(function () {
         $("#inputTrabajador").on("keyup", function () {
             var value = $(this).val().toLowerCase();
-            $("#tablaTrabajadores tr").filter(function () {
+            $("#contenido2 tr").filter(function () {
                 $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
             });
         });

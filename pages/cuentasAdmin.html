@@ -5,10 +5,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
     <title>Document</title>
     <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/styleadmin.css">
+    <!-- nuevos -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 
 <body>
@@ -41,7 +45,7 @@
                     <div class="propiedades">
                         <button type="button" class="btn btn-danger btnCerrarSesion">
                             <a style="color: white;" href="../controller/CCTrabajador.php?accion=Close">
-                                <i class="bi bi-box-arrow-left"></i>
+                                Cerrar
                             </a>
                         </button>
                     </div>
@@ -50,40 +54,151 @@
         </div>
     </div>
     <div class="modal fade modalCrear" id="crearTrabajadores">
-        <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title">
-                        Registrar Administrador
+                        Registrar trabajadores
                     </h4>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
 
                 <!-- Modal body -->
+                <!-- el problema esta aqui, quitarlo o modificarlo bien -->
                 <div class="modal-body">
-                    <form>
+                    <form action="#" class="formulario" method="POST" enctype="multipart/form-data" id="formulario">
+                        <input type="hidden" name="txtidEmpleado" id="txtidEmpleado">
                         <div class="form-group">
-                            <label for="usr">Nombre:</label>
-                            <input type="text" class="form-control" id="usr">
-                        </div>
-                        <div class="form-group">
-                            <label for="pwd">Contraseña:</label>
-                            <input type="password" class="form-control" id="pwd">
+                            <label for="email">Nombre en MODAL INS</label>
+                            <input type="text" class="ferValid form-control" name="txtnombreEmpleado2"
+                                placeholder="Enter name" id="txtnombreEmpleado2">
                         </div>
                         <div class="form-group">
-                            <label for="pwd">Confirmar contraseña:</label>
-                            <input type="password" class="form-control" id="pwd">
+                            <label for="pwd">Correo:</label>
+                            <input type="text" class="form-control" name="txtcorreoEmpleado2"
+                                placeholder="Enter creditos" id="txtcorreoEmpleado2">
                         </div>
-                        <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="customFile">
-                            <label class="custom-file-label" for="customFile">Imagen de perfil</label>
+                        <div class="form-group">
+                            <label for="email2">Contraseña:</label>
+                            <input type="password" class="form-control" name="txtpasswordEmpleado2"
+                                placeholder="Ingrese su contraseña" id="txtpasswordEmpleado2">
+                            <button id="show_password" class="btn btn-primary" type="button"
+                                onclick="mostrarPassword()">
+                                <span class="fa fa-eye-slash icon"></span>
+                            </button>
                         </div>
-                        <button type="button" class="btn btn-success">Registrar</button>
+                        <div class="form-group">
+                            <label for="email3">Encuestas Realizadas:</label>
+                            <input type="text" class="ferValid2 form-control" name="txtencuestasRealizadas2"
+                                placeholder="Enter name" id="txtencuestasRealizadas2">
+                        </div>
+                        <div class="form-group">
+                            <label for="pwd3">Estado:</label>
+                            <input type="text" class="form-control" name="txtestado2" value="1" id="txtestado2"
+                                disabled>
+                        </div>
+                        <div class="form-group">
+                            <label for="pwd4">ID Cargo:</label>
+                            <input type="text" class="ferValid2 form-control" name="txtidCargo2"
+                                placeholder="Enter creditos" id="txtidCargo2">
+                        </div>
+                        <button type="submit" id="btnEnviarI" class="btn btn-primary" class="close"
+                            data-dismiss="modal">Registrar Administrador</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
+    <!-- </div> -->
+    <!-- <div class="modal fade modalCrud" id="Cargo">
+        <div class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">
+                        Cargo
+                    </h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div> -->
+    <!-- Modal body (para ver los cargos)-->
+    <!-- <div class="modal-body">
+                    <div class="tablaResponsive">
+                        <div class="form-group">
+                            <label for="usr">Cargo:</label>
+                            <input type="text" class="form-control" id="usr">
+                            <button type="button" class="btn btn-success">Insertar</button>
+                        </div>
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Cargo</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Mesero</td>
+                                    <td class="grupoBotones">
+                                        <div class="btn-group">
+                                            <button class="btn btn-primary">
+                                                <i class='bx bx-up-arrow-alt'></i>
+                                            </button>
+                                            <button class="btn btn-danger">
+                                                <i class='bx bx-trash'></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>Cocinero</td>
+                                    <td class="grupoBotones">
+                                        <div class="btn-group">
+                                            <button class="btn btn-primary">
+                                                <i class='bx bx-up-arrow-alt'></i>
+                                            </button>
+                                            <button class="btn btn-danger">
+                                                <i class='bx bx-trash'></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>Recepcionista</td>
+                                    <td class="grupoBotones">
+                                        <div class="btn-group">
+                                            <button class="btn btn-primary">
+                                                <i class='bx bx-up-arrow-alt'></i>
+                                            </button>
+                                            <button class="btn btn-danger">
+                                                <i class='bx bx-trash'></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td>Motorizado</td>
+                                    <td class="grupoBotones">
+                                        <div class="btn-group">
+                                            <button class="btn btn-primary">
+                                                <i class='bx bx-up-arrow-alt'></i>
+                                            </button>
+                                            <button class="btn btn-danger">
+                                                <i class='bx bx-trash'></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div> -->
+    <!-- </div>
+        </div>
+    </div> -->
     <header>
         <div class="nav_barraLateral">
             <div id="sidenav-header">
@@ -103,6 +218,7 @@
                 <i class='bx bx-menu'></i>
             </div>
         </div>
+
     </header>
     <nav id="sidenav">
         <div id="menu">
@@ -147,7 +263,7 @@
         </div>
     </nav>
     <main class="mainTrabajadores">
-        <h3>SECCION TRABAJADOR</h3>
+        <h3>SECCION ADMINISTRADORES</h3>
         <div class="adicional">
             <div class="input-group">
                 <div class="input-group-prepend">
@@ -156,9 +272,16 @@
                 <input type="text" class="form-control" id="inputTrabajador" placeholder="Buscar por nombre"
                     style="z-index: 0;">
             </div>
-            <a href="#" class="btn btn-success" data-toggle="modal" data-target="#crearTrabajadores">Insertar</a>
+            <a href="#" class="btn btn-success" data-toggle="modal" data-target="#crearTrabajadores">Nuevo</a>
+            <!-- <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#Cargo">Cargos</a> -->
         </div>
+        <!-- a partir de aqui cambiar -->
         <div class="tabla table-responsive">
+            <style>
+                #contenido2 {
+                    text-align: center;
+                }
+            </style>
             <table class="table table-bordered table-hover">
                 <thead>
                     <tr>
@@ -166,8 +289,26 @@
                         <th>Nombre</th>
                         <th>Correo</th>
                         <th>Cant. Encuestas</th>
-                        <th>Cargo</th>
-                        <th>Perfil</th>
+                        <th>Estado</th>
+                        <th>ID CARGO</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <!-- <tbody id="tablaTrabajadores"> -->
+                <tbody id="contenido2"></tbody>
+                <!-- </tbody> -->
+            </table>
+        </div>
+        <!-- <div class="tabla table-responsive">
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Correo</th>
+                        <th>Cant. Encuestas</th>
+                        <th>Estado</th>
+                        <th>ID CARGO</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
@@ -192,168 +333,62 @@
                             </div>
                         </td>
                     </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Moe</td>
-                        <td>mary@example.com</td>
-                        <td>100</td>
-                        <td>Cocinero</td>
-                        <td>
-                            <img src="../img/trabajadores/deku.jpg" alt="">
-                        </td>
-                        <td class="grupoBotones">
-                            <div class="btn-group">
-                                <button class="btn btn-primary">
-                                    <i class='bx bx-up-arrow-alt'></i>
-                                </button>
-                                <button class="btn btn-danger">
-                                    <i class='bx bx-trash'></i>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Dooley</td>
-                        <td>july@example.com</td>
-                        <td>50</td>
-                        <td>Cocinero</td>
-                        <td>
-                            <img src="../img/trabajadores/naruto.jpg" alt="">
-                        </td>
-                        <td class="grupoBotones">
-                            <div class="btn-group">
-                                <button class="btn btn-primary">
-                                    <i class='bx bx-up-arrow-alt'></i>
-                                </button>
-                                <button class="btn btn-danger">
-                                    <i class='bx bx-trash'></i>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>Doe</td>
-                        <td>john@example.com</td>
-                        <td>10</td>
-                        <td>Recepcionista</td>
-                        <td>
-                            <img src="../img/trabajadores/kirito.jpg" alt="">
-                        </td>
-                        <td class="grupoBotones">
-                            <div class="btn-group">
-                                <button class="btn btn-primary">
-                                    <i class='bx bx-up-arrow-alt'></i>
-                                </button>
-                                <button class="btn btn-danger">
-                                    <i class='bx bx-trash'></i>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Moe</td>
-                        <td>mary@example.com</td>
-                        <td>100</td>
-                        <td>Mesero</td>
-                        <td>
-                            <img src="../img/trabajadores/subaru.jpg" alt="">
-                        </td>
-                        <td class="grupoBotones">
-                            <div class="btn-group">
-                                <button class="btn btn-primary">
-                                    <i class='bx bx-up-arrow-alt'></i>
-                                </button>
-                                <button class="btn btn-danger">
-                                    <i class='bx bx-trash'></i>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Dooley</td>
-                        <td>july@example.com</td>
-                        <td>50</td>
-                        <td>Cocinero</td>
-                        <td>
-                            <img src="../img/trabajadores/meliodas.jpg" alt="">
-                        </td>
-                        <td class="grupoBotones">
-                            <div class="btn-group">
-                                <button class="btn btn-primary">
-                                    <i class='bx bx-up-arrow-alt'></i>
-                                </button>
-                                <button class="btn btn-danger">
-                                    <i class='bx bx-trash'></i>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>Doe</td>
-                        <td>john@example.com</td>
-                        <td>10</td>
-                        <td>Cocinero</td>
-                        <td>
-                            <img src="../img/trabajadores/saitama.jpg" alt="">
-                        </td>
-                        <td class="grupoBotones">
-                            <div class="btn-group">
-                                <button class="btn btn-primary">
-                                    <i class='bx bx-up-arrow-alt'></i>
-                                </button>
-                                <button class="btn btn-danger">
-                                    <i class='bx bx-trash'></i>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Moe</td>
-                        <td>mary@example.com</td>
-                        <td>100</td>
-                        <td>Mesero</td>
-                        <td>
-                            <img src="../img/trabajadores/ikki.jpg" alt="">
-                        </td>
-                        <td class="grupoBotones">
-                            <div class="btn-group">
-                                <button class="btn btn-primary">
-                                    <i class='bx bx-up-arrow-alt'></i>
-                                </button>
-                                <button class="btn btn-danger">
-                                    <i class='bx bx-trash'></i>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Dooley</td>
-                        <td>july@example.com</td>
-                        <td>50</td>
-                        <td>Recepcionista</td>
-                        <td>
-                            <img src="../img/trabajadores/nasa.jpg" alt="">
-                        </td>
-                        <td class="grupoBotones">
-                            <div class="btn-group">
-                                <button class="btn btn-primary">
-                                    <i class='bx bx-up-arrow-alt'></i>
-                                </button>
-                                <button class="btn btn-danger">
-                                    <i class='bx bx-trash'></i>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
                 </tbody>
             </table>
+        </div> -->
+        <div class="modal fade" id="myModal2">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="tituloModal"></h4>
+                        <button type="button" class="close" data-dismiss="modal">
+                            <i class='bx bx-x'></i>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="#" class="formulario2" method="POST" enctype="multipart/form-data"
+                            id="formulario2">
+                            <input type="hidden" name="txtidEmpleado" id="txtidEmpleado">
+                            <div class="form-group">
+                                <label for="email">Nombre en MODALSIGNO:</label>
+                                <input type="text" class="ferValid form-control" name="txtnombreEmpleado"
+                                    placeholder="Enter name" id="txtnombreEmpleado">
+                            </div>
+                            <div class="form-group">
+                                <label for="pwd">Correo:</label>
+                                <input type="text" class="form-control" name="txtcorreoEmpleado"
+                                    placeholder="Enter creditos" id="txtcorreoEmpleado">
+                            </div>
+                            <div class="form-group">
+                                <label for="email2">Contraseña:</label>
+                                <input type="password" class="form-control" name="txtpasswordEmpleado"
+                                    placeholder="Ingrese su contraseña" id="txtpasswordEmpleado">
+                                <button id="show_password" class="btn btn-primary" type="button"
+                                    onclick="mostrarPassword()">
+                                    <span class="fa fa-eye-slash icon"></span>
+                                </button>
+                            </div>
+                            <div class="form-group">
+                                <label for="email3">Encuestas Realizadas:</label>
+                                <input type="text" class="ferValid2 form-control" name="txtencuestasRealizadas"
+                                    placeholder="Enter name" id="txtencuestasRealizadas">
+                            </div>
+                            <div class="form-group">
+                                <label for="pwd3">Estado:</label>
+                                <input type="text" class="form-control" name="txtestado" placeholder="Enter creditos"
+                                    id="txtestado" disabled>
+                            </div>
+                            <div class="form-group">
+                                <label for="pwd4">ID Cargo:</label>
+                                <input type="text" class="ferValid2 form-control" name="txtidCargo"
+                                    placeholder="Enter creditos" id="txtidCargo">
+                            </div>
+                            <button type="submit" id="btnEnviarE" class="btn btn-primary" class="close"
+                                data-dismiss="modal">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
     </main>
     <script src="https://kit.fontawesome.com/f78c574cc2.js" crossorigin="anonymous"></script>
@@ -361,6 +396,12 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../js/efectoAnimacion.js"></script>
+    <!-- archivos nuevos -->
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/mainEmpl.js"></script>
+    <script src="../js/validaciones.js"></script>
 </body>
 
 </html>
