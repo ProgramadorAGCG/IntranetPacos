@@ -54,9 +54,6 @@ function cargosSelect() {
                     template += '<button class="btn">';
                     template += '<a href="#" class="btn btn-warning" data-toggle="modal" data-target="#myModal2X" onclick=cargoGet(' + valor["idCargo"] + ')><i class="bx bx-info-circle"></i></a>';
                     template += '</button>';
-                    // template += '<button class="btn">';
-                    // template += '<a href="#" class="btn btn-danger" onclick="return deshabilitar(' + valor["idCargo"] + ')"><i class="bx bxs-trash-alt"></i></a>';
-                    // template += '</button>';
                     template += '</div>';
                     template += '</td>';
                     template += '</tr>';
