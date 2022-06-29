@@ -24,6 +24,7 @@ window.addEventListener('load', (e) => {
         AdminSelect();
     }
     if (url === "/pages/trabajadores.html") {
+        console.log("usted se encuentra en:", url);
         empSelect();
         // AdminSelect();
     }
