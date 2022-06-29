@@ -12,14 +12,14 @@ window.addEventListener('load', (e) => {
             // empInsert();
             cursoUpdate();
         }
-        if (url === "/pages/cuentasAdmin.html") {
+        if (url === "/pages/cuentasadmin.html") {
             // console.log("la url del insert es:", url); 
             console.log("la url dentro del pages es:", url);
             // empInsert();
             cursoUpdate();
         }
     });
-    if (url === "/pages/cuentasAdmin.html") {
+    if (url === "/pages/cuentasadmin.html") {
         console.log("usted se encuentra en:", url);
         AdminSelect();
     }
@@ -36,7 +36,7 @@ window.addEventListener('load', (e) => {
     const boton2 = document.getElementById('btnEnviarI');
     boton2.addEventListener('click', (e) => {
         e.preventDefault();
-        if (url === "/pages/cuentasAdmin.html") {
+        if (url === "/pages/cuentasadmin.html") {
             console.log("la url dentro del pages es:", url);
             AdminInsert();
         }
@@ -50,7 +50,6 @@ window.addEventListener('load', (e) => {
 function empSelect() {
     $.ajax({
         type: "GET",
-        // url: "http://localhost:5000/curso/select/",
         url: "https://f3rn4nd021py.pythonanywhere.com/empleados/select/",
         dataType: "json",
         success: function (data) {
@@ -114,7 +113,7 @@ function AdminSelect() {
     });
 }
 
-function empGet(id) { /*27*/
+function empGet(id) {
     console.log("el id es:", id);
     $.ajax({
         type: "GET",
@@ -139,7 +138,7 @@ function empEliminar(id) {
         url: "https://f3rn4nd021py.pythonanywhere.com/empleados/delete/" + id + "/",
         dataType: "json",
         success: function (data) {
-            if (url === "/pages/cuentasAdmin.html") {
+            if (url === "/pages/cuentasadmin.html") {
                 AdminSelect();
             }
             if (url === "/pages/trabajadores.html") {
@@ -204,7 +203,7 @@ function AdminInsert() {
         // con processData evitamos que datos enviados se conviertan en tipo texto en lugar json
         processData: false,
         success: function (data) {
-            // window.location.href = "/pages/cuentasAdmin.html";
+            // window.location.href = "/pages/cuentasadmin.html";
             AdminSelect();
         }
     });
@@ -221,14 +220,10 @@ function cursoUpdate() {
     registrosEmpl.append("txtnombreEmpleado", $('#txtnombreEmpleado').val());
     registrosEmpl.append("txtcorreoEmpleado", $('#txtcorreoEmpleado').val());
     registrosEmpl.append("txtpasswordEmpleado", $('#txtpasswordEmpleado').val());
-    // registrosEmpl.append("txtimagenb", $('#txtimagenb').val());
-    // registrosEmpl.append("txtimagenb", $('#txtimagenb').val());
     registrosEmpl.append("txtencuestasRealizadas", $('#txtencuestasRealizadas').val());
-    // registrosEmpl.append("txtestado", $('#txtestado').val());
     registrosEmpl.append("txtidCargo", $('#txtidCargo').val());
     $.ajax({
         type: "PUT",
-        // url: "http://localhost:5000/empleados/update/" + registrosEmpl.get("txtidEmpleado") + "/",
         url: "https://f3rn4nd021py.pythonanywhere.com/empleados/update/" + registrosEmpl.get("txtidEmpleado") + "/",
         data: registrosEmpl,
         dataType: 'json',
@@ -236,7 +231,7 @@ function cursoUpdate() {
         enctype: 'multipart/form-data',
         processData: false,
         success: function (data) {
-            if (url === "/pages/cuentasAdmin.html") {
+            if (url === "/pages/cuentasadmin.html") {
                 console.log("actualiza en cuenta admins")
                 AdminSelect();
             }
