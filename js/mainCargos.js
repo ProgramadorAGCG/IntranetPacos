@@ -12,7 +12,7 @@ window.addEventListener('load', (e) => {
             // empInsert();
             cargoUpdate();
         }
-        if (url === "/pages/cuentasAdmin.html") {
+        if (url === "/pages/cuentasadmin.html") {
             // console.log("la url del insert es:", url); 
             console.log("la url dentro del pages es:", url);
             // empInsert();
@@ -25,7 +25,7 @@ window.addEventListener('load', (e) => {
         //     cursoUpdate();
         // }
     });
-    // if (url === "/pages/cuentasAdmin.html") {
+    // if (url === "/pages/cuentasadmin.html") {
     //     //     // console.log("la url del insert es:", url); 
     //     //     console.log("la url dentro del pages es:", url);
     //     AdminSelect();
@@ -134,7 +134,7 @@ function cargoUpdate() {
         enctype: 'multipart/form-data',
         processData: false,
         success: function (data) {
-            // if (url === "/pages/cuentasAdmin.html") {
+            // if (url === "/pages/cuentasadmin.html") {
             //     AdminSelect();
             // }
             if (url === "/pages/trabajadores.html") {
@@ -154,7 +154,7 @@ function deshabilitar(id) {
         url: "https://f3rn4nd021py.pythonanywhere.com/cargos/update2/" + id + "/",
         dataType: "json",
         success: function (data) {
-            // if (url === "/pages/cuentasAdmin.html") {
+            // if (url === "/pages/cuentasadmin.html") {
             //     AdminSelect();
             // }
             if (url === "/pages/trabajadores.html") {
