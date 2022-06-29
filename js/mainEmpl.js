@@ -1,8 +1,8 @@
 window.addEventListener('load', (e) => {
     const url = window.location.pathname;
     // console.log("la url es:", url);
-    const boton = document.getElementById('btnEnviarE');
-    boton.addEventListener('click', (e) => {
+    const boton1 = document.getElementById('btnEnviarE');
+    boton1.addEventListener('click', (e) => {
         e.preventDefault();
         // if (url === "/create.html") { empInsert(); }
         // if (url === "/pages/empInsert.html") { empInsert(); }
@@ -33,14 +33,14 @@ window.addEventListener('load', (e) => {
 window.addEventListener('load', (e) => {
     const url = window.location.pathname;
     console.log("la url es:", url);
-    const boton = document.getElementById('btnEnviarI');
-    boton.addEventListener('click', (e) => {
+    const boton2 = document.getElementById('btnEnviarI');
+    boton2.addEventListener('click', (e) => {
         e.preventDefault();
         if (url === "/pages/cuentasAdmin.html") {
             console.log("la url dentro del pages es:", url);
             AdminInsert();
         }
-        if (url === "/pages/trabajadores.html") {
+        if (url === "/pages/trabajadores.html" || url === "/pages/trabajadores") {
             console.log("la url dentro del pages es:", url);
             empInsert();
         }
