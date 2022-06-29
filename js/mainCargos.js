@@ -38,7 +38,6 @@ window.addEventListener('load', (e) => {
 function cargosSelect() {
     $.ajax({
         type: "GET",
-        // url: "http://localhost:5000/curso/select/",
         url: "http://127.0.0.1:5000/cargos/select/",
         dataType: "json",
         success: function (data) {
@@ -128,7 +127,6 @@ function cargoUpdate() {
     registrosEmpl.append("txtnombreCargo2", $('#txtnombreCargo2').val());
     $.ajax({
         type: "PUT",
-        // url: "http://localhost:5000/empleados/update/" + registrosEmpl.get("txtidEmpleado") + "/",
         url: "http://127.0.0.1:5000/cargos/update/" + registrosEmpl.get("txtidCargo2") + "/",
         data: registrosEmpl,
         dataType: 'json',

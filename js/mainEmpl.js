@@ -272,54 +272,54 @@ function cursoUpdate() {
 }
 
 
-function archivoCargar() {
-    const archivoExcel = document.getElementById('archivoExcel');
-    archivoExcel.addEventListener('change', (e) => {
-        var registrosEmpl = new FormData();
-        registrosEmpl.append("archivoExcel", $('#archivoExcel')[0].files[0]);
-        $.ajax({
-            type: "POST",
-            url: "http://localhost:5000/curso/cargarexcel/",
-            data: registrosEmpl,
-            dataType: 'json',
-            contentType: false,
-            enctype: 'multipart/form-data',
-            processData: false,
-            success: function (data) {
-                let tabla = '';
-                $.each(data["cursos"], function (llave, valor) {
-                    let template = '<tr>';
-                    template += '<td>' + valor[0] + '</td>';
-                    template += '<td>' + valor[1] + '</td>';
-                    template += '</tr>'
-                    tabla += template;
-                });
-                $('#tablaExcel').html(tabla);
-            }
-        });
-    });
-}
+// function archivoCargar() {
+//     const archivoExcel = document.getElementById('archivoExcel');
+//     archivoExcel.addEventListener('change', (e) => {
+//         var registrosEmpl = new FormData();
+//         registrosEmpl.append("archivoExcel", $('#archivoExcel')[0].files[0]);
+//         $.ajax({
+//             type: "POST",
+//             url: "http://localhost:5000/curso/cargarexcel/",
+//             data: registrosEmpl,
+//             dataType: 'json',
+//             contentType: false,
+//             enctype: 'multipart/form-data',
+//             processData: false,
+//             success: function (data) {
+//                 let tabla = '';
+//                 $.each(data["cursos"], function (llave, valor) {
+//                     let template = '<tr>';
+//                     template += '<td>' + valor[0] + '</td>';
+//                     template += '<td>' + valor[1] + '</td>';
+//                     template += '</tr>'
+//                     tabla += template;
+//                 });
+//                 $('#tablaExcel').html(tabla);
+//             }
+//         });
+//     });
+// }
 
-function insertarDatosExcel() {
-    const tablaExcel = document.getElementById('tablaExcel');
-    const hijos = tablaExcel.children;
-    console.log(hijos);
-    let arreglo = [];
-    for (const iterator of hijos) {
-        const hijo1 = iterator.firstElementChild.textContent;
-        const hijo2 = iterator.lastElementChild.textContent;
-        let elemento = [hijo1, hijo2];
-        arreglo.push(elemento);
-    }
-    $.ajax({
-        type: "POST",
-        url: "http://localhost:5000/curso/crear/",
-        data: JSON.stringify(arreglo),
-        dataType: 'json',
-        contentType: 'application/json',
-        processData: false,
-        success: function (data) {
-            // window.location.href = "index.html";
-        }
-    });
-}
+// function insertarDatosExcel() {
+//     const tablaExcel = document.getElementById('tablaExcel');
+//     const hijos = tablaExcel.children;
+//     console.log(hijos);
+//     let arreglo = [];
+//     for (const iterator of hijos) {
+//         const hijo1 = iterator.firstElementChild.textContent;
+//         const hijo2 = iterator.lastElementChild.textContent;
+//         let elemento = [hijo1, hijo2];
+//         arreglo.push(elemento);
+//     }
+//     $.ajax({
+//         type: "POST",
+//         url: "http://localhost:5000/curso/crear/",
+//         data: JSON.stringify(arreglo),
+//         dataType: 'json',
+//         contentType: 'application/json',
+//         processData: false,
+//         success: function (data) {
+//             // window.location.href = "index.html";
+//         }
+//     });
+// }
