@@ -21,13 +21,6 @@ function mostrarPassword() {
         $('.icon').removeClass('fa fa-eye').addClass('fa fa-eye-slash');
     }
 }
-
-// $(document).ready(function () {
-//     //CheckBox mostrar contraseña
-//     $('#ShowPassword').click(function () {
-//         $('#Password').attr('type', $(this).is(':checked') ? 'text' : 'password');
-//     });
-// });
 // Solo números
 $("input.ferValid2").bind('keypress', function (event) {
     var regex = new RegExp("^[0-9]+$");
