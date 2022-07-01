@@ -1,7 +1,11 @@
 window.addEventListener('load', (e) => {
-    menuResponsive();
-    filtroTablaTrabajadores();
-    filtroTablaTrabajadores2();
+    if(window.location.pathname === "/index.html" || window.location.pathname === "/"){
+        efectoLogin();
+    }else{
+        menuResponsive();
+        filtroTablaTrabajadores();
+    /* filtroTablaTrabajadores2(); */
+    }
 });
 
 function menuResponsive() {
@@ -22,6 +26,23 @@ function filtroTablaTrabajadores() {
         });
     });
 }
+
+function efectoLogin() {
+    const inputs = document.querySelectorAll(".input");
+    inputs.forEach(input => {
+        input.addEventListener("focus", (e) => {
+            let parent = input.parentNode.parentNode;
+            parent.classList.add("focus");
+        });
+        input.addEventListener("blur", (e) => {
+            let parent = input.parentNode.parentNode;
+            if (input.value == "") {
+                parent.classList.remove("focus");
+            }
+        });
+    });
+}
+
 // comentarle a abraham
 // lo que quiero hacer es que si el cargo dice "administrador" que el "tachito" no aparezca 
 // function filtroTablaTrabajadores2() {

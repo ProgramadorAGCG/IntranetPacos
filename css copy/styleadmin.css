@@ -88,7 +88,6 @@ body {
 
 /*LISTA DE OPCIONES DEL PANEL ADMINISTRATIVO*/
 #main-nav {
-  font-size: 15px;
   list-style-type: none;
   padding: 0;
   margin: 0;
@@ -511,7 +510,6 @@ main.mainTrabajadores .tabla tbody tr td img {
 @media screen and (max-width: 1300px) {
   #main-nav li a {
     padding: 0 20px 0 60px;
-    font-size: 14px;
   }
 
   #main-nav li a .fa {
@@ -521,7 +519,6 @@ main.mainTrabajadores .tabla tbody tr td img {
   #sidenav,
   #sidenav-header {
     width: 250px;
-
   }
 
   main {

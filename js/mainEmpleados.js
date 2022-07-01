@@ -1,5 +1,5 @@
 window.addEventListener('load', (e) => {
-    const url = window.location.pathname;
+    /* const url = window.location.pathname;
     // console.log("la url es:", url);
     const boton1 = document.getElementById('btnEnviarE');
     boton1.addEventListener('click', (e) => {
@@ -18,25 +18,17 @@ window.addEventListener('load', (e) => {
             // empInsert();
             cursoUpdate();
         }
-    });
-    if (url === "/pages/cuentasadmin.html") {
-        console.log("usted se encuentra en:", url);
-        AdminSelect();
-    }
-    if (url === "/pages/cuentasadmin") {
-        console.log("usted se encuentra en:", url);
-        AdminSelect();
-    }
-    if (url === "/pages/trabajadores.html") {
-        console.log("usted se encuentra en:", url);
-        empSelect();
-        // AdminSelect();
-    }
-    // if (url === "/crearExcel.html") { archivoCargar(); }
-});
-window.addEventListener('load', (e) => {
+    }); */
     const url = window.location.pathname;
-    console.log("la url es:", url);
+    switch(url){
+        case "/pages/cuentasadmin.html": AdminSelect(); break;
+        case "/pages/cuentasadmin": AdminSelect(); break;
+        case "/pages/trabajadores.html": empSelect(); break;
+    }
+});
+
+window.addEventListener('load', (e) => {
+    /* const url = window.location.pathname;
     const boton2 = document.getElementById('btnEnviarI');
     boton2.addEventListener('click', (e) => {
         e.preventDefault();
@@ -48,13 +40,17 @@ window.addEventListener('load', (e) => {
             console.log("la url dentro del pages es:", url);
             empInsert();
         }
-    });
+    }); */
 });
+
+
+
+
 
 function empSelect() {
     $.ajax({
         type: "GET",
-        url: "https://f3rn4nd021py.pythonanywhere.com/empleados/select/",
+        url: "http://127.0.0.1:5000//empleados/login/",
         dataType: "json",
         success: function (data) {
             var tabla = '';
@@ -87,7 +83,7 @@ function AdminSelect() {
     $.ajax({
         type: "GET",
         // url: "http://localhost:5000/curso/select/",  
-        url: "https://f3rn4nd021py.pythonanywhere.com/admins/select/",
+        url: "http://127.0.0.1:5000/admins/select/",
         dataType: "json",
         success: function (data) {
             var tabla = '';
@@ -121,7 +117,7 @@ function empGet(id) {
     console.log("el id es:", id);
     $.ajax({
         type: "GET",
-        url: "https://f3rn4nd021py.pythonanywhere.com/empleados/get/" + id + "/",
+        url: "http://127.0.0.1:5000/empleados/get/" + id + "/",
         dataType: "json",
         success: function (data) {
             $('#txtidEmpleado').val(data["resultado"]["idEmpleado"]);
@@ -139,7 +135,7 @@ function empEliminar(id) {
     const url = window.location.pathname;
     $.ajax({
         type: "DELETE",
-        url: "https://f3rn4nd021py.pythonanywhere.com/empleados/delete/" + id + "/",
+        url: "http://127.0.0.1:5000/empleados/delete/" + id + "/",
         dataType: "json",
         success: function (data) {
             if (url === "/pages/cuentasadmin.html" || url === "/pages/cuentasadmin") {
@@ -174,7 +170,7 @@ function empInsert() {
     $.ajax({
         type: "POST",
         // url: "http://localhost:5000/curso/create/",
-        url: "https://f3rn4nd021py.pythonanywhere.com/empleados/create/",
+        url: "http://127.0.0.1:5000/empleados/create/",
         data: registrosEmpl,
         dataType: 'json',
         contentType: false,
@@ -199,7 +195,7 @@ function AdminInsert() {
     $.ajax({
         type: "POST",
         // url: "http://localhost:5000/curso/create/",
-        url: "https://f3rn4nd021py.pythonanywhere.com/empleados/create/",
+        url: "http://127.0.0.1:5000/empleados/create/",
         data: registrosEmpl,
         dataType: 'json',
         contentType: false,
@@ -228,7 +224,7 @@ function cursoUpdate() {
     registrosEmpl.append("txtidCargo", $('#txtidCargo').val());
     $.ajax({
         type: "PUT",
-        url: "https://f3rn4nd021py.pythonanywhere.com/empleados/update/" + registrosEmpl.get("txtidEmpleado") + "/",
+        url: "http://127.0.0.1:5000/empleados/update/" + registrosEmpl.get("txtidEmpleado") + "/",
         data: registrosEmpl,
         dataType: 'json',
         contentType: false,
@@ -249,56 +245,3 @@ function cursoUpdate() {
     // limpiar contraseña
     formulario2.reset();
 }
-
-
-// function archivoCargar() {
-//     const archivoExcel = document.getElementById('archivoExcel');
-//     archivoExcel.addEventListener('change', (e) => {
-//         var registrosEmpl = new FormData();
-//         registrosEmpl.append("archivoExcel", $('#archivoExcel')[0].files[0]);
-//         $.ajax({
-//             type: "POST",
-//             url: "http://localhost:5000/curso/cargarexcel/",
-//             data: registrosEmpl,
-//             dataType: 'json',
-//             contentType: false,
-//             enctype: 'multipart/form-data',
-//             processData: false,
-//             success: function (data) {
-//                 let tabla = '';
-//                 $.each(data["cursos"], function (llave, valor) {
-//                     let template = '<tr>';
-//                     template += '<td>' + valor[0] + '</td>';
-//                     template += '<td>' + valor[1] + '</td>';
-//                     template += '</tr>'
-//                     tabla += template;
-//                 });
-//                 $('#tablaExcel').html(tabla);
-//             }
-//         });
-//     });
-// }
-
-// function insertarDatosExcel() {
-//     const tablaExcel = document.getElementById('tablaExcel');
-//     const hijos = tablaExcel.children;
-//     console.log(hijos);
-//     let arreglo = [];
-//     for (const iterator of hijos) {
-//         const hijo1 = iterator.firstElementChild.textContent;
-//         const hijo2 = iterator.lastElementChild.textContent;
-//         let elemento = [hijo1, hijo2];
-//         arreglo.push(elemento);
-//     }
-//     $.ajax({
-//         type: "POST",
-//         url: "http://localhost:5000/curso/crear/",
-//         data: JSON.stringify(arreglo),
-//         dataType: 'json',
-//         contentType: 'application/json',
-//         processData: false,
-//         success: function (data) {
-//             // window.location.href = "index.html";
-//         }
-//     });
-// }
