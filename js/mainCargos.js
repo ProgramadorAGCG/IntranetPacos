@@ -1,6 +1,5 @@
 window.addEventListener('load', (e) => {
     const url = window.location.pathname;
-    console.log("la url es:", url);
     const boton = document.getElementById('btnEnviarCI');
     boton.addEventListener('click', (e) => {
         e.preventDefault();

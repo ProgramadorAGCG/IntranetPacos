@@ -1,34 +1,27 @@
 window.addEventListener('load', (e) => {
-    /* const url = window.location.pathname;
-    // console.log("la url es:", url);
+    const url = window.location.pathname;
+
     const boton1 = document.getElementById('btnEnviarE');
     boton1.addEventListener('click', (e) => {
         e.preventDefault();
-        // if (url === "/create.html") { empInsert(); }
-        // if (url === "/pages/empInsert.html") { empInsert(); }
         if (url === "/pages/trabajadores.html") {
-            // console.log("la url del insert es:", url); 
             console.log("la url dentro del pages es:", url);
-            // empInsert();
             cursoUpdate();
         }
         if (url === "/pages/cuentasadmin.html" || url === "/pages/cuentasadmin") {
-            // console.log("la url del insert es:", url); 
             console.log("la url dentro del pages es:", url);
-            // empInsert();
             cursoUpdate();
         }
-    }); */
-    const url = window.location.pathname;
+    });
+
     switch(url){
-        case "/pages/cuentasadmin.html": AdminSelect(); break;
-        case "/pages/cuentasadmin": AdminSelect(); break;
+        case "/pages/cuentasAdmin.html": AdminSelect(); break;
         case "/pages/trabajadores.html": empSelect(); break;
     }
 });
 
 window.addEventListener('load', (e) => {
-    /* const url = window.location.pathname;
+    const url = window.location.pathname;
     const boton2 = document.getElementById('btnEnviarI');
     boton2.addEventListener('click', (e) => {
         e.preventDefault();
@@ -40,7 +33,7 @@ window.addEventListener('load', (e) => {
             console.log("la url dentro del pages es:", url);
             empInsert();
         }
-    }); */
+    });
 });
 
 
@@ -50,7 +43,7 @@ window.addEventListener('load', (e) => {
 function empSelect() {
     $.ajax({
         type: "GET",
-        url: "http://127.0.0.1:5000//empleados/login/",
+        url: "http://127.0.0.1:5000/empleados/select/",
         dataType: "json",
         success: function (data) {
             var tabla = '';
@@ -82,7 +75,6 @@ function empSelect() {
 function AdminSelect() {
     $.ajax({
         type: "GET",
-        // url: "http://localhost:5000/curso/select/",  
         url: "http://127.0.0.1:5000/admins/select/",
         dataType: "json",
         success: function (data) {
@@ -178,7 +170,6 @@ function empInsert() {
         // con processData evitamos que datos enviados se conviertan en tipo texto en lugar json
         processData: false,
         success: function (data) {
-            // window.location.href = "/pages/trabajadores.html";
             empSelect();
         }
     });

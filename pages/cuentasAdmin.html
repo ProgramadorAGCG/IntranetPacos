@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -15,7 +14,7 @@
     <link rel="stylesheet" href="../css/style.css">
 </head>
 
-<body>
+<body data-barba="wrapper">
     <div class="modal fade" id="cuenta">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -27,17 +26,7 @@
                 </div>
 
                 <!-- Modal body -->
-                <div class="modal-body">
-                    <input type="hidden" name="codCuenta" id="codCuenta"
-                        value="<?= $administrador->getCodTrabajador() ?>">
-                    <div>Correo: administrador@gmail.com
-                    </div>
-                    <div>Nombre: Administrador
-                    </div>
-                    <div>DNI: 12345678
-                    </div>
-                    <div>Teléfono: 123456789
-                    </div>
+                <div class="modal-body" id="perfil">
                 </div>
 
                 <!-- Modal footer -->
@@ -134,52 +123,16 @@
         </div>
 
     </header>
+    
     <nav id="sidenav">
         <div id="menu">
             <ul id="main-nav" class="menus">
-                <li>
-                    <a href="pedidos.html">
-                        <i class="fa fa-utensils"></i>Pedidos
-                    </a>
-                </li>
-                <li>
-                    <a href="carta.html">
-                        <i class="fa fa-utensils"></i>Carta
-                    </a>
-                </li>
-                <li>
-                    <a href="ofertas.html">
-                        <i class="fa fa-utensils"></i>Ofertas
-                    </a>
-                </li>
-                <li>
-                    <a href="trabajadores.html">
-                        <i class="fa fa-user-tie"></i>Trabajadores
-                    </a>
-                </li>
-                <li>
-                    <a href="encuesta.html">
-                        <i class="fa fa-check-square-o"></i>Encuestas
-                    </a>
-                </li>
-                <li>
-                    <a href="moduloEncuesta.html">
-                        <i class="fa fa-check-square-o"></i>Modulo de
-                        encuestas
-                    </a>
-                </li>
-                <li>
-                    <!-- <a href="cuentasadmin.html"> -->
-                    <a href="https://main--pacosbill.netlify.app/pages/cuentasadmin.html">
-                        <i class="fa fa-lock-open"></i>Cuentas Admin
-                    </a>
-                </li>
             </ul>
         </div>
     </nav>
 
     <main class="mainTrabajadores">
-        <h3>SECCION ADMINISTRADORES para netlify ESTOY VIVO</h3>
+        <h3>SECCION ADMINISTRADORES</h3>
         <div class="adicional">
             <div class="input-group">
                 <div class="input-group-prepend">
@@ -321,7 +274,6 @@
     <script async src="../js/mainEmpleados.js"></script>
     <script src="../js/validaciones.js"></script>
     <script src="../js/validacionSesion.js"></script>
-    <!-- <script src="../js/mainCargos.js"></script> -->
 </body>
 
 </html>
