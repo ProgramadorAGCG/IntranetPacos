@@ -176,6 +176,7 @@ function empInsert() {
     // este "formulario" es un id, con la funcion reset limpiamos todo el formulario
     formulario.reset();
 }
+
 function AdminInsert() {
     var registrosEmpl = new FormData();
     registrosEmpl.append("txtnombreEmpleado2", $('#txtnombreEmpleado2').val());

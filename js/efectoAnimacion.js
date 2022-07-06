@@ -4,7 +4,7 @@ window.addEventListener('load', (e) => {
     }else{
         menuResponsive();
         filtroTablaTrabajadores();
-    /* filtroTablaTrabajadores2(); */
+        mostrarNombreFile();
     }
 });
 
@@ -43,17 +43,9 @@ function efectoLogin() {
     });
 }
 
-// comentarle a abraham
-// lo que quiero hacer es que si el cargo dice "administrador" que el "tachito" no aparezca 
-// function filtroTablaTrabajadores2() {
-//     $(document).ready(function () {
-//         // $("#inputTrabajador").on("keyup", function () {
-//         $("Administrador").on("keyup", function () {
-//             var value = $(this).val().toLowerCase();
-//             // $("#contenido3 tr").filter(function () {
-//             $("#contenido3 tr").filter(function () {
-//                 $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-//             });
-//         });
-//     });
-// }
+function mostrarNombreFile(){
+    $("#imagenPlatillo").on("change", function() {
+        var fileName = $(this).val().split("\\").pop();
+        $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+    });
+}
