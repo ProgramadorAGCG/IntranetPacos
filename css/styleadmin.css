@@ -28,6 +28,13 @@ body {
     line-height: 1.80857;
 }
 
+.form-group p{
+    color: #f00;
+    text-align: center;
+    font-size: 12px;
+    height: 22px;
+}
+
 /*VENTANA DE MENÚ DE ADMINISTRACIÓN*/
 .nav_barraLateral {
     width: 100%;
@@ -684,6 +691,11 @@ main.mainTrabajadores .tabla tbody tr td img {
 }
 
 @media screen and (max-width: 576px) {
+
+    #crearOferta div div .modal-body form .contenido{
+        flex-direction: column;
+    }
+
     .nav_barraLateral {
         flex-direction: row-reverse;
         flex-wrap: wrap;

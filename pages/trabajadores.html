@@ -2,24 +2,25 @@
 <html lang="en">
 
 <head>
-    <!-- INICIO DE VALIDADOR -->
-    <link href="${pageContext.request.contextPath}/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="${pageContext.request.contextPath}/bootstrapValidator/css/bootstrapValidator.min.css" rel="stylesheet">
-    <!-- FIN DE VALIDADOR -->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"> -->
     <title>Document</title>
-    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+    <!-- <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'> -->
     <link rel="stylesheet" href="../css/styleadmin.css">
     <!-- nuevos -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
     <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="../css/style.css">
+    <!-- mis iconos -->
+    <link href='https://unpkg.com/css.gg/icons/all.css' rel='stylesheet'>
+    <link rel="shortcut icon" href="#">
+
 </head>
 
 <body>
+    <!--Perfil usuario-->
     <div class="modal fade" id="cuenta">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -30,11 +31,9 @@
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
 
-                <!-- Modal body -->
                 <div class="modal-body" id="perfil">
                 </div>
 
-                <!-- Modal footer -->
                 <div class="modal-footer">
                     <div class="propiedades">
                         <button type="button" class="btn btn-danger btnCerrarSesion" id="btnCerrarSesion">
@@ -47,11 +46,12 @@
             </div>
         </div>
     </div>
+    <!--Fin Perfil usuario-->
     <div class="modal fade modalCrear" id="crearTrabajadores">
         <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">
+                    <h4 class="modal-title w-100 text-center">
                         REGISTRAR TRABAJADOR
                     </h4>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -60,73 +60,59 @@
                 <!-- Modal body -->
                 <!-- el problema esta aqui, quitarlo o modificarlo bien -->
                 <div class="modal-body">
-                    <!-- <form action="#" class="formulario" method="POST" enctype="multipart/form-data" id="formulario" > -->
                     <form action="#" class="formulario" method="POST" enctype="multipart/form-data" id="formulario">
                         <input type="hidden" name="txtidEmpleado" id="txtidEmpleado">
-                        <div class="form-group">
+                        <div class="form-group col-5">
                             <label for="email">Nombre:</label>
-                            <input type="text" class="ferValid form-control" name="txtnombreEmpleado2"
-                            placeholder="Ingrese su nombre" id="txtnombreEmpleado2" data-toggle="tooltip"
-                                title="Su nombre debe ser igual o mayor a 3 dígitos" data-placement="right">
+                            <input type="text" class="form-control" name="txtnombreEmpleado2"
+                                placeholder="Ingrese su nombre" id="txtnombreEmpleado2" data-toggle="tooltip"
+                                title="Su nombre debe ser igual o mayor a 3 dígitos" data-placement="right"
+                                onkeypress="return SoloLetras(event);">
                         </div>
-                        <div class="form-group">
+                        <div class="form-group col-5">
                             <label for="pwd">Correo:</label>
                             <input type="text" class="form-control" name="txtcorreoEmpleado2"
                                 placeholder="example@gmail.com" id="txtcorreoEmpleado2">
                         </div>
-                        <div class="form-group">
-
+                        <div class="form-group col-5">
                             <label for="email2">Contraseña:</label>
-                            <input type="password" class="form-control" name="txtpasswordEmpleado2"
-                                id="txtpasswordEmpleado2" placeholder="***********" data-toggle="tooltip" title="min: 3"
-                                data-placement="right">
-                            <div class="input-group-append" style="display: flexbox !important;">
-                                <button id="show_password" class="btn btn-primary" type="button"
-                                    onclick="mostrarPassword()">
-                                    <span class="fa fa-eye-slash icon"></span>
-                                </button>
+                            <div class="input-group" id="show_hide_password">
+                                <input class="form-control" type="password" name="txtpasswordEmpleado2"
+                                    placeholder="∗∗∗∗∗∗∗∗∗∗" id="txtpasswordEmpleado2" data-toggle="tooltip"
+                                    title="min: 3" data-placement="right">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="show_password" type="button"
+                                        onclick="mostrarPassword()">
+                                        <i class="fa fa-eye-slash icon"></i>
+                                    </span>
+                                </div>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label for="email3">Encuestas Realizadas:</label>
-                            <input type="text" class="ferValid2 form-control" name="txtencuestasRealizadas2"
-                                id="txtencuestasRealizadas2" data-toggle="tooltip" title="Ingrese sólo números"
-                                data-placement="right">
+                        <div class="form-group col-5">
+                            <label for="pwd4">Cargo:</label>
+                            <select id="contenidoCargosList2" class="form-control" name="txtidCargo2"
+                                style="text-align: center;">
+                            </select>
                         </div>
                         <div class="form-group">
-                            <label for="pwd3">Estado:</label>
-                            <input type="text" class="form-control" name="txtestado2" value="1" id="txtestado2"
-                                disabled>
-                        </div>
-                        <div class="form-group">
-                            <label for="pwd4">ID Cargo:</label>
-                            <input type="text" class="ferValid2 form-control" name="txtidCargo2" id="txtidCargo2"
-                                data-toggle="tooltip" title="ingrese solo números" data-placement="right">
-                        </div>
-                        <div class="form-group">
-                            <button type="submit" id="btnEnviarI" class="btn btn-primary" class="close"
-                                data-dismiss="modal">Añadir trabajador</button>
+                            <button type="submit" id="btnEnviarI" class="btn btn-success" class="close"
+                                data-dismiss="modal">AÑADIR TRABAJADOR&nbsp;&nbsp;<i class="gg-user-add"
+                                    style="display: inline-block;"></i></button>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
     </div>
-    <!-- </div> -->
-    
-    <!-- The Modal -->
     <div class="modal fade" id="myModal1X">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-dialog-scrollable">
             <div class="modal-content">
-
-                <!-- Modal Header -->
                 <div class="modal-header">
-                    <h4 class="modal-title">
-                        Cargos activos
+                    <h4 class="modal-title w-100 text-center">
+                        CARGOS
                     </h4>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
-                <!-- Modal body -->
                 <div class="modal-body">
                     <div class="modal-body">
                         <div class="tablaResponsive">
@@ -134,24 +120,56 @@
                                 <input type="text" class="form-control" id="txtnombreCargo" name="txtnombreCargo"
                                     placeholder="Nombre del cargo">
                             </div>
-                            <div class="form-group">
+                            <div class="form-group text-center">
                                 <button type="button" class="btn btn-success" onclick=cargoInsert()
-                                    id="limpiarAgregar">Agregar</button>
+                                    id="limpiarAgregar">AGREGAR CARGO&nbsp;&nbsp;<i class="gg-play-list-add"
+                                        style="display: inline-block;top: -4px;"></i></button>
                             </div>
-                            <table class="table table-bordered" style="text-align: center;">
-                                <thead>
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>Cargo</th>
-                                        <th>Estado</th>
-                                        <th>Acciones</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="contenido3">
-                                </tbody>
-                            </table>
+                            <div class="table-responsive">
+                                <table class="table table-bordered" style="text-align: center;">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>CARGO</th>
+                                            <th>ACCIONES</th>
+                                        </tr>
+                                    </thead>
+                                    <!-- Segundo paso -->
+                                    <tbody id="contenido3">
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <style>
+        #thead-tr th,
+        #thead-tr tr {
+            vertical-align: middle !important;
+        }
+    </style>
+    <div class="modal fade" id="myModal3X">
+        <div class="modal-dialog modal-xl modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header" style="display: block;">
+                    <h3 class="modal-title" style="text-align: center;">
+                        Cambie los empleados de IDCargo
+                    </h3>
+                    <h3 id="modal3x" class="modal-title w-100 text-center"></h3>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-body">
+                        <div class="tablaResponsive table-responsive" id="contenido4">
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button data-dismiss="modal" class="btn btn-success" id="confirmarEliminacionCargo">Aceptar</button>
+                    <button data-dismiss="modal" class="btn btn-danger">Cancelar</button>
                 </div>
             </div>
         </div>
@@ -162,25 +180,24 @@
     <div class="modal fade" id="myModal2X">
         <div class="modal-dialog">
             <div class="modal-content">
-
-                <!-- Modal Header -->
                 <div class="modal-header">
-                    <h4 class="modal-title" id="tituloModalcargo"></h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h3 class="modal-title" style="position: fixed;">Actualizando el cargo:</h3>
+                    <h3 class="modal-title w-100 text-center" id="tituloModalcargo1"></h3>
+                    <button type="button" class="close" data-dismiss="modal"
+                        style="position: absolute;left: 92%;">&times;</button>
+
                 </div>
                 <div class="modal-body" id="modal-body">
-                    <form action="#" class="formulario3" method="POST" enctype="multipart/form-data" id="formulario2">
-                        <input type="hidden" name="txtidCargo2" id="txtidCargo2">
+                    <form action="#" class="formulario3" method="POST" enctype="multipart/form-data" id="formulario3">
+                        <input type="hidden" name="txtidCargoModal2x" id="txtidCargoModal2x">
                         <div class="form-group">
-                            <label for="email">Nombre del cargo:</label>
-                            <input type="text" class="form-control" name="txtnombreCargo2"
-                                id="txtnombreCargo2">
+                            <label for="email">NOMBRE</label>
+                            <input type="text" class="form-control" name="txtnombreCargo2" id="txtnombreCargo2">
                         </div>
                         <div class="form-group" style="align-content: center;text-align: center;">
                             <button type="submit" id="btnEnviarCI" class="btn btn-primary" class="close"
-                                data-dismiss="modal">Actualizar</button>
-                            <!-- <button type="submit" id="btnEnviarCI" class="btn btn-primary"
-                                onclick="cerrarModal()">Actualizar</button> -->
+                                data-dismiss="modal">ACTUALIZAR CARGO&nbsp;&nbsp;<i class="gg-arrow-up-r"
+                                    style="display: inline-block;top: 3px;"></i></button>
                         </div>
                     </form>
                 </div>
@@ -188,9 +205,39 @@
             </div>
         </div>
     </div>
-
-    <!-- <div class="modal fade modalCrud" id="Cargo"> -->
-
+    <div class="modal fade" id="myModal4X" style="left: -15px;">
+        <div class="modal-dialog modal-sm modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header" style="display: inline;">
+                    <h3 class="modal-title" style="text-align: center;">NOMBRE DEL EMPLEADO</h3>
+                    <h3 class="modal-title w-100 text-center" id="tituloModalCargoDes" style="padding-top: -40px;"></h3>
+                    <!-- <button type="button" class="close" data-dismiss="modal"
+                        style="position: absolute;left: 92%;">&times;</button> -->
+                </div>
+                <div class="modal-body" id="modal-body">
+                    <form action="#" class="formulario3" method="POST" enctype="multipart/form-data" id="formulario3">
+                        <input type="hidden" name="miidnuevo" id="miidnuevo">
+                        <input type="hidden" name="tituloModalCargoDes" id="tituloModalCargoDes">
+                        <input type="hidden" id="valorActualizar">
+                        <div class="form-group">
+                            <label for="email">ID</label>
+                            <select id="contenidoCargosList" class="form-control" name="micargonuevo">
+                                
+                            </select>
+                        </div>
+                        <div class="form-group" style="align-content: center;text-align: center;">
+                            <button type="submit" id="btnEnviarE2" class="btn btn-primary" class="close"
+                                data-dismiss="modal">ACTUALIZAR CARGO&nbsp;&nbsp;<i class="gg-arrow-up-r"
+                                    style="display: inline-block;top: 3px;"></i></button>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" onclick="ocultar3()">CERRAR</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <header>
         <div class="nav_barraLateral">
             <div id="sidenav-header">
@@ -200,7 +247,7 @@
                 <div class="btn-group">
                     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="modal"
                         data-target="#cuenta">
-                        <span class="etiquetaPerfil">Perfil</span>
+                        <span type="button" class="etiquetaPerfil" id="btnPerfil">Perfil</span>
                         <span class="caret"></span>
                     </button>
                 </div>
@@ -215,115 +262,116 @@
     <nav id="sidenav">
         <div id="menu">
             <ul id="main-nav" class="menus">
-                
             </ul>
         </div>
     </nav>
     <main class="mainTrabajadores">
-        <h3>SECCION EMPLEADOS</h3>
-        <div class="adicional">
-            <div class="input-group">
-                <div class="input-group-prepend">
-                    <span class="input-group-text">Nombre</span>
-                </div>
-                <input type="text" class="form-control" id="inputTrabajador" placeholder="Buscar por nombre"
-                    style="z-index: 0;">
+        <h3>REGISTRO DE EMPLEADOS</h3>
+
+        <div class="input-group col-11">
+            <div class="input-group-prepend">
+                <span class="input-group-text">
+                    <i class="gg-search"></i>
+                </span>
             </div>
-            <a href="#" class="btn btn-success" data-toggle="modal" data-target="#crearTrabajadores">Nuevo</a>
-            <!-- <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#Cargo">Cargos</a> -->
-            <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal1X">
-                ABRE EL MODAL 1
-            </button> -->
-            <A href="#" class="btn btn-primary" data-toggle="modal" data-target="#myModal1X">
-                Cargo
-            </A>
+            <input type="text" class="form-control" id="inputTrabajador" style="z-index: 0;"
+                placeholder="Buscar empleado">
         </div>
-        <!-- a partir de aqui cambiar -->
+        <!-- <input type="text" class="form-control" id="inputTrabajador" style="z-index: 0;"> -->
+        <div class="form-group">
+            <a href="#" class="btn btn-success" data-toggle="modal" data-target="#crearTrabajadores" value="1"
+                id="AgregarEmpleadoBtn" onclick="cargosCombo()">
+                AGREGAR EMPLEADO&nbsp;&nbsp;<i class="gg-user-list" style="display: inline-block;"></i>
+            </a>&nbsp;
+            <!-- Primer paso -->
+            <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#myModal1X">
+                CARGOS&nbsp;&nbsp;<i class="gg-list" style="display: inline-block;top: 3px;"></i></a>
+        </div>
         <div class="tabla table-responsive">
             <table class="table table-bordered table-hover">
-                <thead>
+                <thead id="thead-tr">
                     <tr>
                         <th>ID</th>
-                        <th>Nombre</th>
-                        <th>Correo</th>
-                        <th>Cant. Encuestas</th>
-                        <th>Estado</th>
-                        <th>ID CARGO</th>
-                        <th>Acciones</th>
+                        <th>NOMBRE</th>
+                        <th>CORREO</th>
+                        <th>CARGO</th>
+                        <th>ACCIONES</th>
                     </tr>
                 </thead>
-                <!-- <tbody id="tablaTrabajadores"> -->
-                <tbody id="contenido2"></tbody>
-                <!-- </tbody> -->
+                <tbody id="contenidoEmpleado">
+
+                </tbody>
             </table>
         </div>
-        <div class="modal fade" id="myModal2">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title" id="tituloModal"></h4>
-                        <button type="button" class="close" data-dismiss="modal">
-                            <i class='bx bx-x'></i>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form action="#" class="formulario2" method="POST" enctype="multipart/form-data"
-                            id="formulario2">
-                            <input type="hidden" name="txtidEmpleado" id="txtidEmpleado">
-                            <div class="form-group">
-                                <label for="email">Nombre del empleado:</label>
-                                <input type="text" class="ferValid form-control" name="txtnombreEmpleado"
-                                    placeholder="Ingrese su nombre" id="txtnombreEmpleado" data-toggle="tooltip"
-                                    title="su nombre debe ser igual o mayor a 3 dígitos" data-placement="bottom">
-                            </div>
-                            <div class="form-group">
-                                <label for="pwd">Correo:</label>
-                                <input type="text" class="form-control" name="txtcorreoEmpleado"
-                                    placeholder="example@gmail.com" id="txtcorreoEmpleado">
-                            </div>
-                            <div class="form-group">
-                                <label for="email2">Contraseña:</label>
-                                <input type="password" class="form-control" name="txtpasswordEmpleado"
-                                    placeholder="Ingrese su contraseña" id="txtpasswordEmpleado" data-toggle="tooltip"
+    </main>
+
+    <div class="modal fade" id="myModal2">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title w-100 text-center" id="tituloModal"></h4>
+                    <button type="button" class="close" data-dismiss="modal"
+                        style="position: absolute;left: 90%;">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <form action="#" class="formulario2" method="POST" enctype="multipart/form-data" id="formulario2">
+                        <input type="hidden" name="txtidEmpleado" id="txtidEmpleado">
+                        <div class="form-group col-5">
+                            <label for="email">Nombre del empleado:</label>
+                            <input type="text" class="form-control" name="txtnombreEmpleado"
+                                placeholder="Ingrese su nombre" id="txtnombreEmpleado" data-toggle="tooltip"
+                                title="su nombre debe ser igual o mayor a 3 dígitos" data-placement="bottom"
+                                onkeypress="return SoloLetras(event);">
+                        </div>
+                        <div class="form-group col-5">
+                            <label for="pwd">Correo:</label>
+                            <input type="text" class="form-control" name="txtcorreoEmpleado"
+                                placeholder="example@gmail.com" id="txtcorreoEmpleado">
+                        </div>
+                        <div class="form-group col-5">
+                            <label for="email2">Contraseña:</label>
+                            <div class="input-group" id="show_hide_password">
+                                <input class="form-control" type="password" name="txtpasswordEmpleado"
+                                    placeholder="∗∗∗∗∗∗∗∗∗∗" id="txtpasswordEmpleado" data-toggle="tooltip"
                                     title="min: 3" data-placement="right">
-                                <button id="show_password" class="btn btn-primary" type="button"
-                                    onclick="mostrarPassword()">
-                                    <span class="fa fa-eye-slash icon"></span>
-                                </button>
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="show_password" type="button"
+                                        onclick="mostrarPassword()">
+                                        <i class="fa fa-eye-slash icon"></i>
+                                    </span>
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label for="email3">Encuestas Realizadas:</label>
-                                <input type="text" class="ferValid2 form-control" name="txtencuestasRealizadas"
-                                    id="txtencuestasRealizadas" data-toggle="tooltip" title="Ingrese sólo números"
-                                    data-placement="right">
-                            </div>
-                            <div class="form-group">
-                                <label for="pwd3">Estado:</label>
-                                <input type="text" class="form-control" name="txtestado" id="txtestado" disabled>
-                            </div>
-                            <div class="form-group">
-                                <label for="pwd4">ID Cargo:</label>
-                                <input type="text" class="ferValid2 form-control" name="txtidCargo" id="txtidCargo"
-                                    data-toggle="tooltip" title="ingrese solo números" data-placement="right">
-                            </div>
-                            <button type="submit" id="btnEnviarE" class="btn btn-primary" class="close"
-                                data-dismiss="modal">Actualizar empleado</button>
-                        </form>
-                    </div>
+                        </div>
+                        <div class="form-group col-5">
+                            <label for="pwd4">Cargo:</label>
+                            <select id="contenidoCargosList3" class="form-control" name="txtidCargo"
+                                style="text-align: center;"></select>
+                        </div>
+                        <button type="submit" id="btnEnviarE" class="btn btn-primary" class="close"
+                            data-dismiss="modal">ACTUALIZAR EMPLEADO</button>
+                    </form>
                 </div>
             </div>
         </div>
-    </main>
+    </div>
+
+
     <script src="https://kit.fontawesome.com/f78c574cc2.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
     <script src="../js/efectoAnimacion.js"></script>
-    <!-- archivos nuevos -->
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="../js/mainEmpleados.js"></script>
-    <script src="../js/validaciones.js"></script>
-    <script src="../js/mainCargos.js"></script>
-    <script src="../js/validacionSesion.js"></script>
+
+
+    <script async src="../js/mainEmpleados.js"></script>
+    
+    <script async src="../js/validaciones.js"></script>
+    <script async src="../js/mainCargos.js"></script>
+    <!-- mis iconos -->
+    <script async src="../js/validacionSesion.js"></script>
 </body>
 
 </html>

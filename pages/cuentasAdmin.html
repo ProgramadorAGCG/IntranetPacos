@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,14 +8,18 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
     <title>Restaurante Pacos Bill's</title>
     <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+    <!-- nuevos -->
+    <link rel="stylesheet" href="../css/style.css">
+    <!-- asa -->
     <link rel="stylesheet" href="../css/styleadmin.css">
     <!-- nuevos -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
-    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="../css/style.css">
+    <!-- mis iconos -->
+    <link href='https://unpkg.com/css.gg/icons/all.css' rel='stylesheet'>
+    <link rel="shortcut icon" href="#">
 </head>
 
-<body data-barba="wrapper">
+<body>
+    <!--Perfil usuario-->
     <div class="modal fade" id="cuenta">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -25,11 +30,9 @@
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
 
-                <!-- Modal body -->
                 <div class="modal-body" id="perfil">
                 </div>
 
-                <!-- Modal footer -->
                 <div class="modal-footer">
                     <div class="propiedades">
                         <button type="button" class="btn btn-danger btnCerrarSesion" id="btnCerrarSesion">
@@ -42,14 +45,18 @@
             </div>
         </div>
     </div>
+    <!--Fin Perfil usuario-->
+
     <div class="modal fade modalCrear" id="crearTrabajadores">
         <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">
-                        Registrar trabajadores
+                    <h4 class="modal-title w-100 text-center">
+                        REGISTRAR ADMINISTRADOR
                     </h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+                    <button type="button" class="close" data-dismiss="modal"
+                        style="position: absolute;left: 92%;">&times;</button>
                 </div>
 
                 <!-- Modal body -->
@@ -57,43 +64,33 @@
                 <div class="modal-body">
                     <form action="#" class="formulario" method="POST" enctype="multipart/form-data" id="formulario">
                         <input type="hidden" name="txtidEmpleado" id="txtidEmpleado">
-                        <div class="form-group">
-                            <label for="email">Nombre:</label>
-                            <input type="text" class="ferValid form-control" name="txtnombreEmpleado2"
+                        <div class="form-group col-5">
+                            <label for="email">Nombre</label>
+                            <input type="text" class="form-control" name="txtnombreEmpleado2"
                                 placeholder="Ingrese su nombre" id="txtnombreEmpleado2" data-toggle="tooltip"
-                                title="su nombre debe ser igual o mayor a 3 dígitos" data-placement="bottom">
+                                title="su nombre debe ser igual o mayor a 3 dígitos" data-placement="bottom"
+                                onkeypress="return SoloLetras(event);">
                         </div>
-                        <div class="form-group">
+
+                        <div class="form-group col-5">
                             <label for="pwd">Correo:</label>
                             <input type="text" class="form-control" name="txtcorreoEmpleado2" data-toggle="tooltip"
                                 title="su nombre debe ser igual o mayor a 3 dígitos" data-placement="bottom"
-                                id="txtcorreoEmpleado2">
+                                id="txtcorreoEmpleado2" placeholder="example@gmail.com">
                         </div>
-                        <div class="form-group">
+                        <div class="form-group col-5">
                             <label for="email2">Contraseña:</label>
-                            <input type="password" class="form-control" name="txtpasswordEmpleado2"
-                                placeholder="Ingrese su contraseña" id="txtpasswordEmpleado2">
-                            <button id="show_password" class="btn btn-primary" type="button"
-                                onclick="mostrarPassword()">
-                                <span class="fa fa-eye-slash icon"></span>
-                            </button>
-                        </div>
-                        <div class="form-group">
-                            <label for="email3">Encuestas Realizadas:</label>
-                            <input type="text" class="ferValid2 form-control" name="txtencuestasRealizadas2"
-                                id="txtencuestasRealizadas2" data-toggle="tooltip" title="Ingrese sólo números"
-                                data-placement="right">
-                        </div>
-                        <div class="form-group">
-                            <label for="pwd3">Estado:</label>
-                            <input type="text" class="form-control" name="txtestado2" value="1" id="txtestado2" disabled
-                                id="txtencuestasRealizadas2" data-toggle="tooltip" title="Ingrese sólo números"
-                                data-placement="right">
-                        </div>
-                        <div class="form-group">
-                            <label for="pwd4">ID Cargo:</label>
-                            <input type="text" class="ferValid2 form-control" name="txtidCargo2"
-                                placeholder="Enter creditos" id="txtidCargo2">
+                            <div class="input-group" id="show_hide_password">
+                                <input class="form-control" type="password" name="txtpasswordEmpleado2"
+                                    placeholder="Ingrese su contraseñas" id="txtpasswordEmpleado2" data-toggle="tooltip"
+                                    title="min: 3" data-placement="right">
+                                <div class="input-group-prepend">
+                                    <span id="show_password" class="input-group-text" type="button"
+                                        onclick="mostrarPassword()">
+                                        <i class="fa fa-eye-slash icon"></i>
+                                    </span>
+                                </div>
+                            </div>
                         </div>
                         <button type="submit" id="btnEnviarI" class="btn btn-primary" class="close"
                             data-dismiss="modal">Registrar Administrador</button>
@@ -111,7 +108,7 @@
                 <div class="btn-group">
                     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="modal"
                         data-target="#cuenta">
-                        <span class="etiquetaPerfil">Perfil</span>
+                        <span type="button" class="etiquetaPerfil" id="btnPerfil">Perfil</span>
                         <span class="caret"></span>
                     </button>
                 </div>
@@ -123,7 +120,6 @@
         </div>
 
     </header>
-    
     <nav id="sidenav">
         <div id="menu">
             <ul id="main-nav" class="menus">
@@ -132,23 +128,25 @@
     </nav>
 
     <main class="mainTrabajadores">
-        <h3>SECCION ADMINISTRADORES</h3>
-        <div class="adicional">
-            <div class="input-group">
-                <div class="input-group-prepend">
-                    <span class="input-group-text">Nombre</span>
-                </div>
-                <input type="text" class="form-control" id="inputTrabajador" placeholder="Buscar por nombre"
-                    style="z-index: 0;">
-            </div>
-            <a href="#" class="btn btn-success" data-toggle="modal" data-target="#crearTrabajadores">Nuevo</a>
-            <!-- <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#Cargo">Cargos</a> -->
+        <h3>REGISTRO DE ADMINISTRADORES</h3>
+        <div class="input-group col-11">
         </div>
-        <!-- a partir de aqui cambiar -->
+        <div class="form-group">
+            <a href="#" class="btn btn-success" data-toggle="modal" data-target="#crearTrabajadores" value="1"
+                id="AgregarEmpleadoBtn">
+                AGREGAR ADMINISTRADOR&nbsp;&nbsp;<i class="gg-user-list" style="display: inline-block;"></i>
+            </a>
+        </div>
+
         <div class="tabla table-responsive">
             <style>
                 #contenido2 {
                     text-align: center;
+                }
+
+                .table td,
+                .table th {
+                    vertical-align: middle;
                 }
             </style>
             <table class="table table-bordered table-hover">
@@ -157,9 +155,6 @@
                         <th>ID</th>
                         <th>Nombre</th>
                         <th>Correo</th>
-                        <th>Cant. Encuestas</th>
-                        <th>Estado</th>
-                        <th>ID CARGO</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
@@ -168,104 +163,62 @@
                 <!-- </tbody> -->
             </table>
         </div>
-        <!-- <div class="tabla table-responsive">
-            <table class="table table-bordered table-hover">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Nombre</th>
-                        <th>Correo</th>
-                        <th>Cant. Encuestas</th>
-                        <th>Estado</th>
-                        <th>ID CARGO</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody id="tablaTrabajadores">
-                    <tr>
-                        <td>1</td>
-                        <td>Doe</td>
-                        <td>john@example.com</td>
-                        <td>10</td>
-                        <td>Mesero</td>
-                        <td>
-                            <img src="../img/trabajadores/Goku.jpg" alt="">
-                        </td>
-                        <td class="grupoBotones">
-                            <div class="btn-group">
-                                <button class="btn btn-primary">
-                                    <i class='bx bx-up-arrow-alt'></i>
-                                </button>
-                                <button class="btn btn-danger">
-                                    <i class='bx bx-trash'></i>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div> -->
-        <div class="modal fade" id="myModal2">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title" id="tituloModal"></h4>
-                        <button type="button" class="close" data-dismiss="modal">
-                            <i class='bx bx-x'></i>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form action="#" class="formulario2" method="POST" enctype="multipart/form-data"
-                            id="formulario2">
-                            <input type="hidden" name="txtidEmpleado" id="txtidEmpleado">
-                            <div class="form-group">
-                                <label for="email">Nombre del administrador:</label>
-                                <input type="text" class="ferValid form-control" name="txtnombreEmpleado"
-                                    placeholder="Ingrese su nombre" id="txtnombreEmpleado" data-toggle="tooltip"
-                                    title="su nombre debe ser igual o mayor a 3 dígitos" data-placement="bottom">
-                            </div>
-                            <div class="form-group">
-                                <label for="pwd">Correo:</label>
-                                <input type="text" class="form-control" name="txtcorreoEmpleado"
-                                    placeholder="example@gmail.com" id="txtcorreoEmpleado">
-                            </div>
+    </main>
+
+    <div class="modal fade" id="myModal2">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title w-100 text-center" id="tituloModal"></h4>
+                    <button type="button" class="close" data-dismiss="modal" style="position: absolute;left: 90%;">
+                        <i class='bx bx-x'></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="#" class="formulario2" method="POST" enctype="multipart/form-data"
+                        id="formulario2">
+                        <input type="hidden" name="txtidEmpleado" id="txtidEmpleado">
+                        <div class="form-group col-5">
+                            <label for="email">Nombre del administrador:</label>
+                            <input type="text" class="form-control" name="txtnombreEmpleado"
+                                placeholder="Ingrese su nombre" id="txtnombreEmpleado" data-toggle="tooltip"
+                                title="su nombre debe ser igual o mayor a 3 dígitos" data-placement="bottom"
+                                onkeypress="return SoloLetras(event);">
+                        </div>
+                        <div class="form-group col-5">
+                            <label for="pwd">Correo:</label>
+                            <input type="text" class="form-control" name="txtcorreoEmpleado"
+                                placeholder="example@gmail.com" id="txtcorreoEmpleado">
+                        </div>
+                        <input type="hidden" name="txtCargo" id="contenidoCargosList3">
+                        <div class="form-group col-5">
                             <div class="form-group">
                                 <label for="email2">Contraseña:</label>
-                                <input type="password" class="form-control" name="txtpasswordEmpleado"
-                                    placeholder="Ingrese su contraseña" id="txtpasswordEmpleado" data-toggle="tooltip"
-                                    title="min: 3" data-placement="right">
-                                <button id="show_password" class="btn btn-primary" type="button"
-                                    onclick="mostrarPassword()">
-                                    <span class="fa fa-eye-slash icon"></span>
-                                </button>
+                                <div class="input-group" id="show_hide_password">
+                                    <input class="form-control" type="password" name="txtpasswordEmpleado"
+                                        placeholder="∗∗∗∗∗∗∗∗∗∗" id="txtpasswordEmpleado" data-toggle="tooltip"
+                                        title="min: 3" data-placement="right">
+                                    <div class="input-group-prepend">
+                                        <span id="show_password" class="input-group-text" type="button"
+                                            onclick="mostrarPassword()">
+                                            <i class="fa fa-eye-slash icon"></i>
+                                        </span>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label for="email3">Encuestas Realizadas:</label>
-                                <input type="text" class="ferValid2 form-control" name="txtencuestasRealizadas"
-                                    id="txtencuestasRealizadas" data-toggle="tooltip" title="Ingrese sólo números"
-                                    data-placement="right">
-                            </div>
-                            <div class="form-group">
-                                <label for="pwd3">Estado:</label>
-                                <input type="text" class="form-control" name="txtestado" id="txtestado" disabled>
-                            </div>
-                            <div class="form-group">
-                                <label for="pwd4">ID Cargo:</label>
-                                <input type="text" class="ferValid2 form-control" name="txtidCargo" id="txtidCargo"
-                                    data-toggle="tooltip" title="ingrese solo números" data-placement="right">
-                            </div>
-                            <button type="submit" id="btnEnviarE" class="btn btn-primary" class="close"
-                                data-dismiss="modal">Actualizar administrador</button>
-                        </form>
-                    </div>
+                        </div>
+                        <button type="submit" id="btnEnviarE" class="btn btn-primary" class="close"
+                            data-dismiss="modal">Actualizar administrador</button>
+                    </form>
                 </div>
             </div>
         </div>
-    </main>
+    </div>
+
+    <!-- <script src="../js/mainCargos.js"></script> -->
     <script src="https://kit.fontawesome.com/f78c574cc2.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+    
     <script src="../js/efectoAnimacion.js"></script>
     <!-- archivos nuevos -->
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
@@ -273,7 +226,10 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
     <script async src="../js/mainEmpleados.js"></script>
     <script src="../js/validaciones.js"></script>
-    <script src="../js/validacionSesion.js"></script>
+
+    
+    <!-- para salir del logeo -->
+    <script async src="../js/validacionSesion.js"></script>
 </body>
 
 </html>

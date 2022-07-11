@@ -5,8 +5,8 @@ window.addEventListener('load',(e)=>{
     insertarCategoria();
     categoriaFiltro();
     categoriaPlatilloRegister();
-    //Icono cancelar
-    //<i class='bx bx-block'></i>
+    cerrarModalUpdCateg();
+    actualizarCategoria();
 });
 
 function categoriaFiltro(){
@@ -28,7 +28,7 @@ function categoriaFiltro(){
                 $('#categoriaFiltro').html(contenidoHTML)
             }else{
                 response["resultado"].forEach(categoria => {
-                    contenidoHTML += `<li><a href="#" class="btn opcionesOfertas">${categoria["nombreCategoria"]}</a></li>`;
+                    contenidoHTML += `<li><a href="#" class="btn opcionesOfertas" onclick="filtroCategoria(${categoria["idCategoria"]})">${categoria["nombreCategoria"]}</a></li>`;
                 });
                 $('#categoriaFiltro2').html(contenidoHTML)
             }
@@ -60,6 +60,7 @@ function categoriasSelect(){
         url: dominio + "/categorias/select/",
         dataType: "json",
         success: function (response) {
+            $('#ofertas-content').empty();
             let contenido = "";
             response["resultado"].forEach(categoria => {
                 contenido += `<tr>`;
@@ -67,16 +68,66 @@ function categoriasSelect(){
                     contenido += `<td id="categoria${categoria["idCategoria"]}">${categoria["nombreCategoria"]}</td>`;
                     contenido += `<td class="grupoBotones">`;
                         contenido += `<div class="btn-group">`;
-                            contenido += `<button class="btn btn-primary" onclick="obtenerCategoria(${categoria["idCategoria"]});">`;
+                            contenido += `<button class="btn btn-primary" onclick="obtenerCategoria(${categoria["idCategoria"]});" data-toggle="modal" data-target="#actualizarCategoria">`;
                                 contenido += `<i class='bx bx-up-arrow-alt'></i>`;
                             contenido += `</button>`;
-                            contenido += `<button class="btn btn-danger" onclick="eliminarCategoria(${categoria["idCategoria"]});">`;
-                                contenido += `<i class='bx bx-trash'></i>`;
-                            contenido += `</button>`;
+                            if(categoria["idCategoria"] !== 2){
+                                contenido += `<button class="btn btn-danger" onclick="eliminarCategoria(${categoria["idCategoria"]});">`;
+                                    contenido += `<i class='bx bx-trash'></i>`;
+                                contenido += `</button>`;
+                            }
+                                
                         contenido += `</div>`;
                 contenido += `</tr>`;
             });
             $('#tablaCategorias').html(contenido)
+        }
+    });
+}
+
+function cerrarModalUpdCateg(){
+    const closeUpdCateg = document.getElementById('closeUpdCateg');
+    closeUpdCateg.addEventListener('click',(e)=>{
+        $('#actualizarCategoria').modal('hide');
+    });
+    
+}
+
+function actualizarCategoria(id){
+    const btnActualizarCateg = document.getElementById('btnActualizarCateg');
+    btnActualizarCateg.addEventListener('click',(e)=>{
+        const registroCategoria = new FormData();
+        registroCategoria.append("txtIdCateg", $('#txtIdCateg').val());
+        registroCategoria.append("txtNombreCategoria", $('#txtCategUpd').val());
+        $.ajax({
+            type: "PUT",
+            url: `${dominio2}/categorias/update/${registroCategoria.get('txtIdCateg')}/`,
+            data: registroCategoria,
+            dataType: 'json',
+            contentType: false,
+            enctype: 'multipart/form-data',
+            processData: false,
+            success: function (data) {
+                $('#actualizarCategoria').modal('hide');
+                categoriasSelect();
+                categoriasSelect();
+                categoriaFiltro();
+                categoriaPlatilloRegister();
+            }
+        });
+    });
+    
+}
+
+function obtenerCategoria(idCategoria){
+    $('#Categorias'). modal('hide');
+    $.ajax({
+        type: "GET",
+        url: `${dominio}/categorias/get/${idCategoria}`,
+        dataType: "json",
+        success: function (response) {
+            $('#txtIdCateg').val(response["resultado"]["idCategoria"]);
+            $('#txtCategUpd').val(response["resultado"]["nombreCategoria"]);
         }
     });
 }

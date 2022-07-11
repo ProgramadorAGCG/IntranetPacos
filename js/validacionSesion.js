@@ -12,7 +12,7 @@ window.addEventListener('load',(e)=>{
 });
 
 function redireccionDefecto(idCargo){
-    if(idCargo === 1) window.location.href = "/pages/cuentasAdmin.html";
+    if(idCargo === 1) window.location.href = "/pages/cuentasadmin.html";
     else window.location.href = "/pages/moduloEncuesta.html";
 }
 
@@ -42,7 +42,7 @@ function visualizarPassword(){
 
 function validarOperaciones(idCargo){
     let cadena = "";
-    if(idCargo === 1){
+    if(idCargo === 2){
         cadena = '<li>'+
                     '<a href="ofertas.html">'+
                         '<i class="fa fa-utensils"></i>Ofertas'+
@@ -59,7 +59,7 @@ function validarOperaciones(idCargo){
                     '</a>'+
                 '</li>'+
                 '<li>'+
-                    '<a href="cuentasAdmin.html">'+
+                    '<a href="cuentasadmin.html">'+
                         '<i class="fa fa-lock-open"></i>Cuentas Admin'+
                     '</a>'+
                 '</li>';
@@ -102,7 +102,7 @@ function validarSesssion(){
 
 function operacionLoguear(){
     const idEmpleado = sessionStorage.getItem("idEmpleado");
-    if(idEmpleado !== null){
+    if(idEmpleado !== 'null'){
         $.ajax({
             type: "GET",
             url: "http://127.0.0.1:5000/empleados/get/" + idEmpleado + "/",
@@ -115,7 +115,6 @@ function operacionLoguear(){
             }
         });
     }
-
 }
 
 function login(){
@@ -159,8 +158,6 @@ function llenarPerfil(){
                 if(data["exito"] === true){
                     let carta = `<div>Correo: ${data["resultado"]["correoEmpleado"]}</div>`
                     carta += `<div>Nombre: ${data["resultado"]["nombreEmpleado"]}
-                    </div>`
-                    carta += `<div>Encuestas realizadas: ${data["resultado"]["encuestasRealizadas"]}
                     </div>`
                     carta += `<div>Cargo: ${data["resultado"]["nombreCargo"]}
                     </div>`

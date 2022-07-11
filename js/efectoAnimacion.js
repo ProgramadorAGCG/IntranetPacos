@@ -5,6 +5,7 @@ window.addEventListener('load', (e) => {
         menuResponsive();
         filtroTablaTrabajadores();
         mostrarNombreFile();
+        modalEvitar();
     }
 });
 
@@ -49,3 +50,7 @@ function mostrarNombreFile(){
         $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
     });
 }
+
+function modalEvitar(){
+    /* $('.modal').modal({ backdrop: 'static', keyboard: false }); */
+};
