@@ -80,7 +80,7 @@ function AdminSelect() {
                 template += '<button class="btn">';
                 template += '<a href="#" class="btn btn-warning" data-toggle="modal" data-target="#myModal2" onclick=empGet(' + valor["idEmpleado"] + ')><i class="gg-info"></i></a>';
                 template += '</button>';
-                if (valor["idEmpleado"] !== 2) {
+                if (valor["idEmpleado"] !== 1) {
                     template += '<button class="btn">';
                     template += '<a href="#" class="btn btn-danger" onclick="return empEliminar(' + valor["idEmpleado"] + ')"><i class="gg-trash"></i></a>';
                     template += '</button>';

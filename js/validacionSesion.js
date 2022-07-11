@@ -12,7 +12,7 @@ window.addEventListener('load',(e)=>{
 });
 
 function redireccionDefecto(idCargo){
-    if(idCargo === 1) window.location.href = "/pages/cuentasadmin.html";
+    if(idCargo === 2) window.location.href = "/pages/cuentasadmin.html";
     else window.location.href = "/pages/moduloEncuesta.html";
 }
 
