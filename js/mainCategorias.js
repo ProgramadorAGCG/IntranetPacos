@@ -1,12 +1,9 @@
 const dominio = "http://127.0.0.1:5000"
 
 window.addEventListener('load',(e)=>{
-    categoriasSelect();
-    insertarCategoria();
     categoriaFiltro();
+    categoriasSelect();
     categoriaPlatilloRegister();
-    cerrarModalUpdCateg();
-    actualizarCategoria();
 });
 
 function categoriaFiltro(){
@@ -32,24 +29,6 @@ function categoriaFiltro(){
                 });
                 $('#categoriaFiltro2').html(contenidoHTML)
             }
-        }
-    });
-}
-
-/**
- * *Rellena el combobox de categorias para el modal de registrar platillo
- */
-function categoriaPlatilloRegister(){
-    $.ajax({
-        type: "GET",
-        url: dominio + "/categorias/select/",
-        dataType: "json",
-        success: function (response) {
-            let contenido = ``;
-            response["resultado"].forEach(categoria => {
-                contenido += `<option value="${categoria["idCategoria"]}">${categoria["nombreCategoria"]}</option>`;
-            });
-            $('#categoriaSelectRegisterPlatillo').html(contenido)
         }
     });
 }
@@ -85,70 +64,20 @@ function categoriasSelect(){
     });
 }
 
-function cerrarModalUpdCateg(){
-    const closeUpdCateg = document.getElementById('closeUpdCateg');
-    closeUpdCateg.addEventListener('click',(e)=>{
-        $('#actualizarCategoria').modal('hide');
-    });
-    
-}
-
-function actualizarCategoria(id){
-    const btnActualizarCateg = document.getElementById('btnActualizarCateg');
-    btnActualizarCateg.addEventListener('click',(e)=>{
-        const registroCategoria = new FormData();
-        registroCategoria.append("txtIdCateg", $('#txtIdCateg').val());
-        registroCategoria.append("txtNombreCategoria", $('#txtCategUpd').val());
-        $.ajax({
-            type: "PUT",
-            url: `${dominio2}/categorias/update/${registroCategoria.get('txtIdCateg')}/`,
-            data: registroCategoria,
-            dataType: 'json',
-            contentType: false,
-            enctype: 'multipart/form-data',
-            processData: false,
-            success: function (data) {
-                $('#actualizarCategoria').modal('hide');
-                categoriasSelect();
-                categoriasSelect();
-                categoriaFiltro();
-                categoriaPlatilloRegister();
-            }
-        });
-    });
-    
-}
-
-function obtenerCategoria(idCategoria){
-    $('#Categorias'). modal('hide');
+/**
+ * *Rellena el combobox de categorias para el modal de registrar platillo
+ */
+ function categoriaPlatilloRegister(){
     $.ajax({
         type: "GET",
-        url: `${dominio}/categorias/get/${idCategoria}`,
+        url: dominio + "/categorias/select/",
         dataType: "json",
         success: function (response) {
-            $('#txtIdCateg').val(response["resultado"]["idCategoria"]);
-            $('#txtCategUpd').val(response["resultado"]["nombreCategoria"]);
+            let contenido = ``;
+            response["resultado"].forEach(categoria => {
+                contenido += `<option value="${categoria["idCategoria"]}">${categoria["nombreCategoria"]}</option>`;
+            });
+            $('#categoriaSelectRegisterPlatillo').html(contenido)
         }
-    });
-}
-
-function insertarCategoria(){
-    const btnInsertCategoria = document.getElementById('btnInsertCategoria');
-    btnInsertCategoria.addEventListener('click',(e)=>{
-        const formulario = new FormData();
-        formulario.append("txtNombreCategoria", $('#campoNombreCategoria').val());
-        $.ajax({
-            type: "POST",
-            url: "http://127.0.0.1:5000/categorias/create/",
-            data: formulario,
-            dataType: "json",
-            contentType: false,
-            enctype: 'multipart/form-data',
-            processData: false,
-            success: function (response) {
-                $('#campoNombreCategoria').val('');
-                categoriasSelect();
-            }
-        });
     });
 }

@@ -46,7 +46,6 @@ function empSelectCargos() {
                 template += '<td>' + valor["idEmpleado"] + '</td>';
                 template += '<td>' + valor["nombreEmpleado"] + '</td>';
                 template += '<td>' + valor["correoEmpleado"] + '</td>';
-                template += '<td>' + valor["estado"] + '</td>';
                 template += '<td>' + valor["idCargo"] + '</td>';
                 template += '<td class="grupoBotones">';
                 template += '<div class="btn-group">';
@@ -139,14 +138,13 @@ function cargosSelect() {
             $.each(data["resultado"], function (llave, valor) {
                 if (valor["idCargo"] !== 1) {
                     var template = '<tr>';
-                    template += '<td>' + valor["idCargo"] + '</td>';
                     template += '<td>' + valor["nombreCargo"] + '</td>';
                     template += '<td class="grupoBotones">';
                     template += '<div class="btn-group">';
                     template += '<button class="btn">';
                     template += '<a href="#" class="btn btn-warning" data-toggle="modal" data-target="#myModal2X" onclick=cargoGet(' + valor["idCargo"] + ')><i class="gg-info"></i></a>';
                     template += '</button>';
-                    if (valor["idCargo"] != 1) {
+                    if (valor["idCargo"] != 2) {
                         template += '<button class="btn" data-toggle="modal" data-target="#myModal3X">';
                         template += '<a href="#" class="btn btn-danger" onclick="deshabilitar(' + valor["idCargo"] + ')"><i class="gg-unavailable"></i></a>';
                         template += '</button>';
@@ -236,6 +234,7 @@ function cargoUpdate() {
             if (url === "/pages/trabajadores.html" || url === "/pages/trabajadores") {
                 cargosCombo();
                 cargosSelect();
+                empSelect();
             }
         }
     });
@@ -254,24 +253,6 @@ function reset() {
     $("#myModal4X").find("input,textarea,select").val("");
     $("#myModal4X input[type='checkbox']").prop('checked', false).change();
 }
-
-
-function eliminar(id) {
-    $.ajax({
-        type: "PUT",
-        url: dominio + "cargos/update2/" + id + "/",
-        dataType: 'json',
-        contentType: false,
-        processData: false,
-        success: function (data) {
-            if (url === "/pages/trabajadores.html" || url === "/pages/trabajadores") {
-                cargosCombo();
-                cargosSelect();
-            }
-        }
-    });
-}
-
 
 
 function ocultar() {
@@ -319,7 +300,6 @@ function visualizarCondicionCargo(idCargo) {
                 contenido += '<table class="table table-bordered">'
                 contenido += '<thead>'
                 contenido += '<tr>'
-                contenido += '<th>ID</th>'
                 contenido += '<th>Nombre</th>'
                 contenido += '<th>Correo</th>'
                 contenido += '</tr>'
@@ -328,7 +308,6 @@ function visualizarCondicionCargo(idCargo) {
                 $.each(data["resultado"], function (llave, valor) {
                     if (valor["idCargo"] !== 1) {
                         var template = '<tr>';
-                        template += '<td>' + valor["idEmpleado"] + '</td>';
                         template += '<td>' + valor["nombreEmpleado"] + '</td>';
                         template += '<td>' + valor["correoEmpleado"] + '</td>';
                         template += '</tr>';
@@ -338,6 +317,7 @@ function visualizarCondicionCargo(idCargo) {
                 contenido += '</tbody>'
                 contenido += '</table>'
             } else {
+
                 contenido = '<p>¿Estas seguro de eliminar este cargo?</p>';
             }
             $('#contenido4').html(contenido);
@@ -351,14 +331,13 @@ function confirmarEliminacionCargo(idCargo){
     const confirmarEliminacionCargo = document.getElementById('confirmarEliminacionCargo');
     confirmarEliminacionCargo.addEventListener('click',(e)=>{
         $.ajax({
-            type: "PUT",
-            url: dominio + "cargos/update2/"+idCargo+"/",
+            type: "DELETE",
+            url: dominio + "cargos/delete/"+idCargo+"/",
             dataType: 'json',
             contentType: false,
             enctype: 'multipart/form-data',
             processData: false,
             success: function (data) {
-                console.log(data);
                 cargosSelect();
                 cargosCombo();
                 empSelect();

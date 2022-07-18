@@ -1,93 +1,93 @@
-window.addEventListener('load',(e)=>{
+window.addEventListener('load', (e) => {
     const url = window.location.pathname;
-    if(url === "/index.html" || url==="/"){
+    if (url === "/index.html" || url === "/") {
         operacionLoguear();
         login();
         visualizarPassword();
-    }else{
+    } else {
         validarSesssion();
         cerrarSesion();
         llenarPerfil();
     }
 });
 
-function redireccionDefecto(idCargo){
-    if(idCargo === 2) window.location.href = "/pages/cuentasadmin.html";
+function redireccionDefecto(idCargo) {
+    if (idCargo === 2) window.location.href = "/pages/dashboard.html";
     else window.location.href = "/pages/moduloEncuesta.html";
 }
 
-function cerrarSesion(){
+function cerrarSesion() {
     const btnCerrarSesion = document.getElementById('btnCerrarSesion');
-    btnCerrarSesion.addEventListener('click',(e)=>{
+    btnCerrarSesion.addEventListener('click', (e) => {
         sessionStorage.setItem("idEmpleado", null);
         window.location.href = "/";
     });
 }
 
-function visualizarPassword(){
+function visualizarPassword() {
     btnPasswordVision = document.getElementById('btnPasswordVision');
     txtPassword = document.getElementById('txtPassword');
     icono = document.querySelector('#btnPasswordVision i');
-    btnPasswordVision.addEventListener('click',(e)=>{
-        if(txtPassword.type === 'password'){
+    btnPasswordVision.addEventListener('click', (e) => {
+        if (txtPassword.type === 'password') {
             txtPassword.type = 'text';
             icono.className = 'bx bxs-show';
-        }else{
+        } else {
             txtPassword.type = 'password';
             icono.className = 'bx bxs-hide';
         }
     });
-    
+
 }
 
-function validarOperaciones(idCargo){
+function validarOperaciones(idCargo) {
     let cadena = "";
-    if(idCargo === 2){
-        cadena = '<li>'+
-                    '<a href="ofertas.html">'+
-                        '<i class="fa fa-utensils"></i>Ofertas'+
-                    '</a>'+
-                '</li>'+
-                '<li>'+
-                    '<a href="trabajadores.html">'+
-                        '<i class="fa fa-user-tie"></i>Trabajadores'+
-                    '</a>'+
-                '</li>'+
-                '<li>'+
-                    '<a href="encuesta.html">'+
-                        '<i class="fa fa-check-square-o"></i>Encuestas'+
-                    '</a>'+
-                '</li>'+
-                '<li>'+
-                    '<a href="cuentasadmin.html">'+
-                        '<i class="fa fa-lock-open"></i>Cuentas Admin'+
-                    '</a>'+
-                '</li>';
-    }else{
-        cadena = '<li>'+
-                    '<a href="pedidos.html">'+
-                        '<i class="fa fa-utensils"></i>Pedidos'+
-                    '</a>'+
-                '</li>'+
-                '<li>'+
-                    '<a href="carta.html">'+
-                        '<i class="fa fa-utensils"></i>Carta'+
-                    '</a>'+
-                '</li>'+
-                '<li>'+
-                    '<a href="moduloEncuesta.html">'+
-                        '<i class="fa fa-check-square-o"></i>Modulo de encuestas'+
-                    '</a>'+
-                '</li>';
+    if (idCargo === 2) {
+        cadena = '<li>' +
+            '<a href="dashboard.html">' +
+            '<i class="fa fa-check-square-o"></i>Dashboard' +
+            '</a>' +
+            '</li>' +
+            '<li>' +
+            '<a href="trabajadores.html">' +
+            '<i class="fa fa-user-tie"></i>Trabajadores' +
+            '</a>' +
+            '</li>' +
+            '<li>' +
+            '<a href="platillos.html">' +
+            '<i class="fa fa-utensils"></i>Platillos' +
+            '</a>' +
+            '</li>' +
+            '<li>' +
+            '<a href="cuentasadmin.html">' +
+            '<i class="fa fa-lock-open"></i>Cuentas Admin' +
+            '</a>' +
+            '</li>';
+    } else {
+        cadena = '<li>' +
+            '<a href="pedidos.html">' +
+            '<i class="fa fa-utensils"></i>Pedidos' +
+            '</a>' +
+            '</li>' +
+            '<li>' +
+            '<a href="carta.html">' +
+            '<i class="fa fa-utensils"></i>Carta' +
+            '</a>' +
+            '</li>' +
+            '<li>' +
+            '<a href="moduloEncuesta.html">' +
+            '<i class="fa fa-check-square-o"></i>Modulo de encuestas' +
+            '</a>' +
+            '</li>';
     }
     $('#main-nav').html(cadena);
 }
 
-function validarSesssion(){
+function validarSesssion() {
     const idEmpleado = sessionStorage.getItem("idEmpleado");
-    if(idEmpleado === null){
+    if (idEmpleado === null) {
         window.location.href = "/index.html";
-    }else{
+    } else {
         $.ajax({
             type: "GET",
             url: "http://127.0.0.1:5000/empleados/get/" + idEmpleado + "/",
@@ -96,19 +96,19 @@ function validarSesssion(){
                 validarOperaciones(data["resultado"]["idCargo"]);
             }
         });
-        
+
     }
 }
 
-function operacionLoguear(){
+function operacionLoguear() {
     const idEmpleado = sessionStorage.getItem("idEmpleado");
-    if(idEmpleado !== 'null'){
+    if (idEmpleado !== 'null') {
         $.ajax({
             type: "GET",
             url: "http://127.0.0.1:5000/empleados/get/" + idEmpleado + "/",
             dataType: "json",
             success: function (data) {
-                if(data["exito"] === true){
+                if (data["exito"] === true) {
                     redireccionDefecto(data["resultado"]["idCargo"]);
                     validarOperaciones(data["resultado"]["idCargo"]);
                 }
@@ -117,12 +117,12 @@ function operacionLoguear(){
     }
 }
 
-function login(){
+function login() {
     const txtCorreo = document.getElementById('txtCorreo');
     const txtPassword = document.getElementById('txtPassword');
     const logIncorrecto = document.getElementById('logIncorrecto');
     const btnLogin = document.getElementById('btnLogin');
-    btnLogin.addEventListener('click',(e)=>{
+    btnLogin.addEventListener('click', (e) => {
         e.preventDefault();
         const registro = new FormData();
         registro.append("txtCorreo", txtCorreo.value);
@@ -135,11 +135,11 @@ function login(){
             dataType: "json",
             processData: false,
             success: function (data) {
-                if(data["exito"]===true){
+                if (data["exito"] === true) {
                     sessionStorage.setItem("idEmpleado", data["resultado"]["idEmpleado"]);
                     redireccionDefecto(data["resultado"]["idCargo"]);
                     validarOperaciones(data["resultado"]["idCargo"]);
-                }else{
+                } else {
                     logIncorrecto.textContent = data["resultado"]
                 }
             }
@@ -147,15 +147,15 @@ function login(){
     });
 }
 
-function llenarPerfil(){
+function llenarPerfil() {
     const idEmpleado = sessionStorage.getItem("idEmpleado");
-    if(idEmpleado !== null){
+    if (idEmpleado !== null) {
         $.ajax({
             type: "GET",
             url: "http://127.0.0.1:5000/empleados/loginget/" + idEmpleado + "/",
             dataType: "json",
             success: function (data) {
-                if(data["exito"] === true){
+                if (data["exito"] === true) {
                     let carta = `<div>Correo: ${data["resultado"]["correoEmpleado"]}</div>`
                     carta += `<div>Nombre: ${data["resultado"]["nombreEmpleado"]}
                     </div>`

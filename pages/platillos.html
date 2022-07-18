@@ -40,36 +40,13 @@
     </div>
     <!--Fin Perfil usuario-->
 
-    <!--Modal Confirmar eliminacion-->
-    <div class="modal fade modalCrud modalCrudCategoria" id="actualizarCategoria">
-        <div class="modal-dialog modal-dialog-scrollable">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">Actualizar</h4>
-                    <button type="button" class="close" data-dismiss="modal" data-toggle="modal" data-target="#Categorias" id="closeUpdCateg">&times;</button>
-                </div>
-
-                <!-- Modal body -->
-                <div class="modal-body" style="text-align: center;">
-                    <div class="form-group">
-                        <label for="email">Categoria:</label>
-                        <input type="hidden" id="txtIdCateg">
-                        <input type="text" class="form-control" placeholder="Ingrese una categoria" id="txtCategUpd">
-                    </div>
-                    <button data-dismiss="modal" class="btn btn-success" id="btnActualizarCateg" data-dismiss="modal" data-toggle="modal" data-target="#Categorias">Actualizar</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--End Modal Confirmar eliminacion-->
-
 
     <!--Moda para crear o actualizar una oferta-->
     <div class="modal fade modalCrear" id="crearOferta">
         <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">
+                    <h4 class="modal-title" id="tituloUpdate">
                         Registrar Platillos
                     </h4>
                     <button type="button" class="close" data-dismiss="modal" id="modalClose">&times;</button>
@@ -96,7 +73,7 @@
                             <div class="ladoDer">
                                 <div class="form-group" id="precioPlatillo">
                                     <label for="precioPlatillo">Precio:</label>
-                                    <input type="text" class="form-control" >
+                                    <input type="text" class="form-control">
                                     <p></p>
                                 </div>
                                 <div class="form-group">
@@ -118,42 +95,6 @@
         </div>
     </div>
     <!--Fin Moda para crear una oferta-->
-
-    <!--Modal para crud de categoria-->
-    <div class="modal fade modalCrud modalCrudCategoria" id="Categorias">
-        <div class="modal-dialog modal-dialog-scrollable">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">
-                        Categorias
-                    </h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-
-                <!-- Modal body -->
-                <div class="modal-body">
-                    <div class="tablaResponsive contenedorModal">
-                        <div class="form-group">
-                            <label for="usr">Categoria:</label>
-                            <input type="text" class="form-control" id="campoNombreCategoria">
-                            <button type="button" class="btn btn-success" id="btnInsertCategoria">Insertar</button>
-                        </div>
-                        <table class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Categoria</th>
-                                    <th>Acciones</th>
-                                </tr>
-                            </thead>
-                            <tbody id="tablaCategorias"></tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--Fin Modal para crud de categoria-->
 
     <!--Modal Confirmar eliminacion-->
     <div class="modal fade modalCrud modalCrudCategoria" id="eliminarPlatillo">
@@ -206,14 +147,7 @@
         <div class="primario">
             <h3>SECCION PLATILLOS</h3>
             <div class="adicional">
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text">Nombre</span>
-                    </div>
-                    <input style="z-index: 0;" type="text" class="form-control" placeholder="Buscar por nombre">
-                </div>
-                <a href="#" class="btn btn-success" data-toggle="modal" data-target="#crearOferta">Insertar</a>
-                <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#Categorias">Categorias</a>
+                <a href="#" class="btn btn-success" data-toggle="modal" data-target="#crearOferta" id="btnInsertarPlatillo">Insertar</a>
                 <select name="cars" class="custom-select" id="categoriaFiltro" onchange="filtroCategoriaSelected()">
                 </select>
             </div>
@@ -229,8 +163,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../js/efectoAnimacion.js"></script>
     <script src="../js/validacionSesion.js"></script>
-    <script src="../js/mainPlatillos.js"></script>
     <script src="../js/mainCategorias.js"></script>
+    <script src="../js/mainPlatillos.js"></script>
 </body>
 
 </html>

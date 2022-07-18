@@ -47,6 +47,34 @@
     </div>
     <!--Fin Perfil usuario-->
 
+    <!-- Modal para ingresar la contraseña antes de modificarlo -->
+    <div class="modal fade" id="modalCorroborarPassword">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header" style="display: inline;">
+                    <h3 class="modal-title" style="text-align: center;">Ingrese la contraseña de este empleado</h3>
+                </div>
+                <div class="modal-body" id="modal-body">
+                    <form action="#" style="display: flex; flex-direction: column; align-items: center" method="POST" id="formularioCorroborarPassword">
+                        <input type="hidden" name="idEmpleado" id="idEmpleado">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text">Password</span>
+                            </div>
+                            <input type="password" class="form-control" id="txtPasswordC" placeholder="Ingrese contraseña">
+                        </div>
+                        <button type="button" class="btn btn-success" id="btnConfirmarPassword">Corroborar</button>
+                        <p style="color: #f00" id="mensajeError"></p>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END Modal para ingresar la contraseña antes de modificarlo -->
+
     <div class="modal fade modalCrear" id="crearTrabajadores">
         <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content">
@@ -64,25 +92,26 @@
                 <div class="modal-body">
                     <form action="#" class="formulario" method="POST" enctype="multipart/form-data" id="formulario">
                         <input type="hidden" name="txtidEmpleado" id="txtidEmpleado">
+                        <input type="hidden" name="accionTrab" id="accionTrab">
                         <div class="form-group col-5">
                             <label for="email">Nombre</label>
-                            <input type="text" class="form-control" name="txtnombreEmpleado2"
-                                placeholder="Ingrese su nombre" id="txtnombreEmpleado2" data-toggle="tooltip"
+                            <input type="text" class="form-control" name="txtnombreEmpleado"
+                                placeholder="Ingrese su nombre" id="txtnombreEmpleado" data-toggle="tooltip"
                                 title="su nombre debe ser igual o mayor a 3 dígitos" data-placement="bottom"
                                 onkeypress="return SoloLetras(event);">
                         </div>
 
                         <div class="form-group col-5">
                             <label for="pwd">Correo:</label>
-                            <input type="text" class="form-control" name="txtcorreoEmpleado2" data-toggle="tooltip"
+                            <input type="text" class="form-control" name="txtcorreoEmpleado" data-toggle="tooltip"
                                 title="su nombre debe ser igual o mayor a 3 dígitos" data-placement="bottom"
-                                id="txtcorreoEmpleado2" placeholder="example@gmail.com">
+                                id="txtcorreoEmpleado" placeholder="example@gmail.com">
                         </div>
                         <div class="form-group col-5">
                             <label for="email2">Contraseña:</label>
                             <div class="input-group" id="show_hide_password">
-                                <input class="form-control" type="password" name="txtpasswordEmpleado2"
-                                    placeholder="Ingrese su contraseñas" id="txtpasswordEmpleado2" data-toggle="tooltip"
+                                <input class="form-control" type="password" name="txtpasswordEmpleado"
+                                    placeholder="Ingrese su contraseñas" id="txtpasswordEmpleado" data-toggle="tooltip"
                                     title="min: 3" data-placement="right">
                                 <div class="input-group-prepend">
                                     <span id="show_password" class="input-group-text" type="button"
@@ -92,6 +121,7 @@
                                 </div>
                             </div>
                         </div>
+                        <input type="hidden" name="contenidoCargosList2" id="contenidoCargosList2" value="2">
                         <button type="submit" id="btnEnviarI" class="btn btn-primary" class="close"
                             data-dismiss="modal">Registrar Administrador</button>
                     </form>
@@ -129,8 +159,6 @@
 
     <main class="mainTrabajadores">
         <h3>REGISTRO DE ADMINISTRADORES</h3>
-        <div class="input-group col-11">
-        </div>
         <div class="form-group">
             <a href="#" class="btn btn-success" data-toggle="modal" data-target="#crearTrabajadores" value="1"
                 id="AgregarEmpleadoBtn">

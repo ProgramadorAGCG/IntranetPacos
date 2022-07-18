@@ -1,55 +1,9 @@
 const dominio2 = "http://127.0.0.1:5000";
 let categoria = 2;
 
-const validaciones = {
-    txtNombrePlatillo: false,
-    txtPrecio: false,
-    txtDescripcion: false,
-    imagenPlatillo: false
-};
-
-/**
- * *Codigo de validaciones
- */
-
-function validacionesPredeterminadas(){
-    validaciones.txtNombrePlatillo = false;
-    validaciones.txtPrecio = false;
-    validaciones.txtDescripcion = false;
-    validaciones.imagenPlatillo = false;
-}
-
-function validandoCamposPlatillos(){
-    const nombre = document.querySelector('#nombrePlatillo>input');
-    const precio = document.querySelector('#nombrePlatillo>input');
-    const imagen = document.querySelector('#nombrePlatillo>input');
-    const descripcion = document.querySelector('#nombrePlatillo>input');
-
-    nombre.addEventListener('focus',(e)=>{
-        nombreValor = nombre.value;
-        if(nombreValor.length > 100){
-            document.querySelector('#nombrePlatillo>p').textContent = "Máximo 100 caracteres";
-        }
-    });
-
-    nombre.addEventListener('blur',(e)=>{
-        nombreValor = nombre.value;
-        if(nombreValor.length > 100){
-            document.querySelector('#nombrePlatillo>p').textContent = "Máximo 100 caracteres";
-        }
-    });
-    
-}
-
-/**
- * *Fin de código validaciones
- */
-
-
 window.addEventListener('load',(e)=>{
-    platillosSelect(categoria);
+    filtroCategoria(categoria);
     modalClose();
-    validandoCamposPlatillos();
     const registrarPlatillo = document.getElementById('registrarPlatillo');
     registrarPlatillo.addEventListener('click',(e)=>{
         const txtAccion = document.getElementById('txtAccion');
@@ -59,6 +13,14 @@ window.addEventListener('load',(e)=>{
             platillosUpdate();
         }
     });
+    const btnInsertarPlatillo = document.getElementById('btnInsertarPlatillo');
+    btnInsertarPlatillo.addEventListener('click',(e)=>{
+        vaciarFormulario();
+        $('#tituloUpdate').html('INSERTAR PLATILLO');
+        $('#registrarPlatillo').html('Registrar');
+        modalClose();
+    });
+    
 });
 
 function filtroCategoriaSelected() {
@@ -75,10 +37,10 @@ function filtroCategoria(id){
 function vaciarFormulario(){
     $('#txtAccion').val('INSERT');
     $('#txtIdPlatillo').val('');
-    $('#nombrePlatillo').val('');
-    $('#precioPlatillo').val('');
-    $('#descripPlatillo').val('');
-    $("#imagenPlatillo").val(null);
+    $('#nombrePlatillo>input').val('');
+    $('#precioPlatillo>input').val('');
+    $('#descripPlatillo>textArea').val('');
+    $("#imagenPlatillo>input").val(null);
     $(".custom-file-label").html('Choose file');
     $('#registrarPlatillo').html('Registrar');
     $('#categoriaSelectRegisterPlatillo option:nth(0)').attr("selected", "selected");
@@ -90,9 +52,9 @@ function platillosSelect(idCategoria) {
         url: `${dominio2}/platillos/selectCateg/${idCategoria}`,
         dataType: "json",
         success: function (data) {
-            $('#ofertas-content').empty();
             let contenido = '';
             $.each(data["resultado"], function (llave, valor) {
+                console.log(valor);
                 contenido += `<div class="cardOfertas efectoCarta">`;
                     contenido += `<div class="front">`;
                         contenido += `<div class="img">`;
@@ -128,6 +90,7 @@ function platillosUpdate(){
     registrosPlatillo.append("imagenPlatillo", $('#imagenPlatillo>input')[0].files[0]);
     registrosPlatillo.append("txtDescripcion", $('#descripPlatillo>textarea').val());
     registrosPlatillo.append("txtIdCategoria", $('#categoriaSelectRegisterPlatillo').val());
+    console.log($('#imagenPlatillo>input')[0].files[0]);
     $.ajax({
         type: "PUT",
         url: `${dominio2}/platillos/update/${$('#txtIdPlatillo').val()}`,
@@ -137,7 +100,7 @@ function platillosUpdate(){
         enctype: 'multipart/form-data',
         processData: false,
         success: function (data) {
-            platillosSelect(categoria);
+            filtroCategoria(categoria);
             vaciarFormulario();
         }
     });
@@ -159,25 +122,27 @@ function platillosInsert(){
         enctype: 'multipart/form-data',
         processData: false,
         success: function (data) {
-            platillosSelect(categoria);
+            filtroCategoria(categoria);
             vaciarFormulario();
         }
     });
 }
 
 function platillosGet(id){
+    vaciarFormulario();
     $.ajax({
         type: "GET",
         url: `${dominio2}/platillos/get/${id}`,
         dataType: "json",
         success: function (data) {
-            $('#registrarPlatillo').html('Actualizar');
+            $('#tituloUpdate').html('ACTUALIZAR PLATILLO');
             $('#txtAccion').val('UPDATE');
             $('#txtIdPlatillo').val(data["resultado"]["idProducto"])
-            $('#nombrePlatillo').val(data["resultado"]["nombreProducto"]);
-            $('#precioPlatillo').val(data["resultado"]["precio"]);
-            $('#descripPlatillo').val(data["resultado"]["descripcion"]);
-            $(`#categoriaSelectRegisterPlatillo option[value="${data["resultado"]["idCategoria"]}"`).attr("selected", true);
+            $('#nombrePlatillo>input').val(data["resultado"]["nombreProducto"]);
+            $('#precioPlatillo>input').val(data["resultado"]["precio"]);
+            $('#descripPlatillo>textArea').val(data["resultado"]["descripcion"]);
+            $(`#categoriaSelectRegisterPlatillo`).val(data["resultado"]["idCategoria"]);
+            $('#registrarPlatillo').html('Actualizar');
         }
     });
 }
@@ -198,7 +163,7 @@ function eliminarPlatilloModal(id, nombreProducto){
             url: dominio + "/platillos/delete/" + id + "/",
             dataType: "json",
             success: function (data) {
-                platillosSelect(categoria);
+                filtroCategoria(categoria);
             }
         });
     });
