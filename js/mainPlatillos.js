@@ -1,5 +1,5 @@
 const dominio2 = "http://127.0.0.1:5000";
-let categoria = 2;
+var categoria = 2;
 
 window.addEventListener('load',(e)=>{
     filtroCategoria(categoria);
@@ -32,6 +32,7 @@ function filtroCategoriaSelected() {
 function filtroCategoria(id){
     platillosSelect(id);
     categoria = id;
+    $('#categoriaSelectRegisterPlatillo').val(id)
 }
 
 function vaciarFormulario(){
@@ -65,7 +66,7 @@ function platillosSelect(idCategoria) {
                         contenido += `</div>`;
                         contenido += `<div class="info">`;
                             contenido += `<h3>${valor["nombreProducto"]}</h3>`;
-                            contenido += `<p>Precio: ${valor["precio"]}</p>`;
+                            contenido += `<p>Precio: S/${valor["precio"]}</p>`;
                             contenido += `<div class="botones">`;
                                 contenido += `<button type="button" class="btn btn-success" onclick="platillosGet(${valor["idProducto"]})" data-toggle="modal" data-target="#crearOferta">`
                                     contenido += `<i class='bx bx-up-arrow-alt'></i>`;
@@ -90,7 +91,6 @@ function platillosUpdate(){
     registrosPlatillo.append("imagenPlatillo", $('#imagenPlatillo>input')[0].files[0]);
     registrosPlatillo.append("txtDescripcion", $('#descripPlatillo>textarea').val());
     registrosPlatillo.append("txtIdCategoria", $('#categoriaSelectRegisterPlatillo').val());
-    console.log($('#imagenPlatillo>input')[0].files[0]);
     $.ajax({
         type: "PUT",
         url: `${dominio2}/platillos/update/${$('#txtIdPlatillo').val()}`,
