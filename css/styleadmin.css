@@ -259,7 +259,7 @@ main .adicional select {
     display: none;
 }
 
-main .primario .ofertas-content .cardOfertas {
+.cardOfertas {
     width: 240px;
     height: 350px;
     border: 15px solid #fff;
@@ -289,14 +289,14 @@ main .primario .ofertas-content .cardOfertas {
     -o-transition: transform 1s;
 }
 
-main .primario .ofertas-content .cardOfertas .front .img {
+.cardOfertas .front .img {
     height: 200px;
     width: 100%;
     position: relative;
     overflow: hidden;
 }
 
-main .primario .ofertas-content .cardOfertas .front .img .back {
+.cardOfertas .front .img .back {
     position: absolute;
     top: 100%;
     left: 0;
@@ -312,16 +312,16 @@ main .primario .ofertas-content .cardOfertas .front .img .back {
     -o-transition: 0.5s all;
 }
 
-main .primario .ofertas-content .cardOfertas .front .img:hover .back {
+.cardOfertas .front .img:hover .back {
     top: 0%;
 }
 
-main .primario .ofertas-content .cardOfertas .front .img .back p {
+.cardOfertas .front .img .back p {
     overflow-wrap: break-word;
     text-align: start;
 }
 
-main .primario .ofertas-content .cardOfertas .front .info {
+.cardOfertas .front .info {
     height: 120px;
     width: 100%;
     text-align: center;
@@ -330,12 +330,12 @@ main .primario .ofertas-content .cardOfertas .front .info {
     justify-content: center;
 }
 
-main .primario .ofertas-content .cardOfertas .info h3 {
+.cardOfertas .info h3 {
     font-size: 16px;
     overflow: hidden;
 }
 
-main .primario .ofertas-content .cardOfertas .info .botones button {
+.cardOfertas .info .botones button {
     margin: 5px;
 }
 
@@ -407,67 +407,6 @@ main .secundario ul li .opcionesOfertas {
     width: 100%;
     height: 100%;
 }
-
-/* main.moduloEncuesta {
-    justify-content: center;
-}
-
-main.moduloEncuesta::before {
-    content: "";
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    z-index: -1;
-    background: var(--color-darkblue);
-    background-image: linear-gradient(115deg,
-            rgba(31, 31, 35, 0.8),
-            rgba(32, 32, 35, 0.7)),
-        url(../img/fondoEncuesta.jpg);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-}
-
-main.moduloEncuesta .encuesta {
-    max-width: 720px;
-    padding: 30px;
-}
-
-main.moduloEncuesta .encuesta form {
-    color: #fff;
-}
-
-main.moduloEncuesta .encuesta form div .input-textarea {
-    min-height: 120px;
-    width: 100%;
-    padding: 0.625rem;
-    resize: vertical;
-}
-
-main.moduloEncuesta .encuesta form div button {
-    width: 100%;
-}
-
-main.moduloEncuesta .encuesta form .select {
-    display: flex;
-    flex-direction: column;
-}
-
-main.moduloEncuesta .encuesta form .select label {
-    display: flex;
-    align-items: center;
-}
-
-.input-radio,
-.input-checkbox {
-    display: inline-block;
-    margin-right: 0.625rem;
-    min-height: 1.25rem;
-    min-width: 1.25rem;
-} */
-
 /*-------------------END MODULO ENCUESTA------------------------------*/
 
 /*-------------------ENCUESTA------------------------------*/
@@ -528,6 +467,74 @@ main.mainTrabajadores .tabla tbody tr td img {
 }
 
 /*-------------------END TRABAJADOR------------------------------*/
+
+/*-------------------PEDIDO----------------------*/
+
+#contenidoPedidos .btn-group button a{
+    color: #fff;
+    text-decoration: none;
+}
+
+#tablaDetallePedido > tr{
+    vertical-align: center;
+}
+
+/*-------------------END PEDIDO----------------------*/
+
+/*-------------------CARTA----------------------*/
+
+.mainCarta{
+    display: flex;
+    flex-direction: row;
+    align-items: inherit;
+    padding: 0;
+}
+
+    .mainCarta .categorias{
+        background-color: #222;
+        width: 20%;
+        position: relative;
+    }
+
+    .mainCarta .contentCarta{
+        padding: 30px;
+        width: 80%;
+        display: grid;
+        align-content: center;
+        grid-template-columns: repeat(auto-fit, 240px);
+        justify-content: center;
+        gap: 20px 50px;
+    }
+
+    .mainCarta .categorias ul {
+        position: relative;
+        padding: 30px 0;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        row-gap: 30px;
+    }
+    
+    .mainCarta .categorias ul li {
+        width: 90%;
+    }
+    
+    .mainCarta .categorias ul li .opcionesOfertas {
+        background-color: #ef7000;
+        color: #fff;
+        width: 100%;
+    }
+    
+    .mainCarta .contentCarta .cardOfertas{
+        height: 400px;
+    }
+
+    .mainCarta .contentCarta .cardOfertas .front .info{
+        height: 170px;
+    }
+
+/*-------------------END CARTA----------------------*/
 
 /*---------RESPONSIVE -------------------------------*/
 

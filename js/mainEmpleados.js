@@ -1,8 +1,3 @@
-/** 
- * $('#modalCorroborarPassword').modal('show');
- * 
-*/
-
 
 const dominio2 = "http://127.0.0.1:5000/";
 window.addEventListener('load', (e) => {
@@ -112,13 +107,13 @@ function empSelect() {
                 template += '<td>' + valor["nombreCargo"] + '</td>';
                 template += '<td class="grupoBotones">';
                 template += '<div class="btn-group">';
-                template += '<button class="btn">';
-                /* template += '<a href="#" class="btn btn-warning" data-toggle="modal" data-target="#myModal2" onclick=empGet(' + valor["idEmpleado"] + ')><i class="gg-info"></i></a>'; */
-                template += '<a href="#" class="btn btn-warning" data-toggle="modal" data-target="#modalCorroborarPassword" onclick="modalCorroborarPassword(' + valor["idEmpleado"] + ')"><i class="gg-info"></i></a>';
-                template += '</button>';
-                template += '<button class="btn">';
-                template += '<a href="#" class="btn btn-danger" onclick="return empEliminar(' + valor["idEmpleado"] + ')"><i class="gg-trash"></i></a>';
-                template += '</button>';
+                    template += '<button class="btn">';
+                    /* template += '<a href="#" class="btn btn-warning" data-toggle="modal" data-target="#myModal2" onclick=empGet(' + valor["idEmpleado"] + ')><i class="gg-info"></i></a>'; */
+                    template += '<a href="#" class="btn btn-warning" data-toggle="modal" data-target="#modalCorroborarPassword" onclick="modalCorroborarPassword(' + valor["idEmpleado"] + ')"><i class="gg-info"></i></a>';
+                    template += '</button>';
+                    template += '<button class="btn">';
+                    template += '<a href="#" class="btn btn-danger" onclick="return empEliminar(' + valor["idEmpleado"] + ')"><i class="gg-trash"></i></a>';
+                    template += '</button>';
                 template += '</div>';
                 template += '</td>';
                 template += '</tr>';
@@ -209,10 +204,6 @@ function AdminInsert() {
     registrosEmpl.append("txtcorreoEmpleado2", $('#txtcorreoEmpleado').val());
     registrosEmpl.append("txtpasswordEmpleado2", $('#txtpasswordEmpleado').val());
     registrosEmpl.append("txtidCargo2", $('#contenidoCargosList2').val());
-    console.log($('#txtnombreEmpleado').val());
-    console.log($('#txtcorreoEmpleado').val());
-    console.log($('#txtpasswordEmpleado').val());
-    console.log($('#contenidoCargosList2').val());
     $.ajax({
         type: "POST",
         url: dominio2 + "empleados/create/1/",
@@ -235,7 +226,6 @@ function empleadoUpdate() {
     registrosEmpl.append("txtcorreoEmpleado", $('#txtcorreoEmpleado').val());
     registrosEmpl.append("txtpasswordEmpleado", $('#txtpasswordEmpleado').val());
     registrosEmpl.append("txtidCargo", $('#contenidoCargosList2').val());
-    console.log($('#contenidoCargosList2').val());
     $.ajax({
         type: "PUT",
         url: dominio2 + "empleados/update/" + registrosEmpl.get("txtidEmpleado") + "/",

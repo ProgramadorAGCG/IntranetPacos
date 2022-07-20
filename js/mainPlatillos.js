@@ -20,7 +20,17 @@ window.addEventListener('load',(e)=>{
         $('#registrarPlatillo').html('Registrar');
         modalClose();
     });
-    
+    const confirmarEliminacionPlatillo = document.getElementById('confirmarEliminacionPlatillo');
+    confirmarEliminacionPlatillo.addEventListener('click',(e)=>{
+        $.ajax({
+            type: "PUT",
+            url: dominio + "/platillos/delete/" + id + "/",
+            dataType: "json",
+            success: function (data) {
+                filtroCategoria(categoria);
+            }
+        });
+    });
 });
 
 function filtroCategoriaSelected() {
@@ -156,15 +166,4 @@ function modalClose(){
 
 function eliminarPlatilloModal(id, nombreProducto){
     $('#preguntaEliminarPlatillo').html("¿Estas seguro de eliminar el producto "+nombreProducto+"?");
-    const confirmarEliminacionPlatillo = document.getElementById('confirmarEliminacionPlatillo');
-    confirmarEliminacionPlatillo.addEventListener('click',(e)=>{
-        $.ajax({
-            type: "PUT",
-            url: dominio + "/platillos/delete/" + id + "/",
-            dataType: "json",
-            success: function (data) {
-                filtroCategoria(categoria);
-            }
-        });
-    });
 }
