@@ -20,11 +20,18 @@ window.addEventListener('load',(e)=>{
         $('#registrarPlatillo').html('Registrar');
         modalClose();
     });
+    
     const confirmarEliminacionPlatillo = document.getElementById('confirmarEliminacionPlatillo');
     confirmarEliminacionPlatillo.addEventListener('click',(e)=>{
         $.ajax({
             type: "PUT",
-            url: dominio + "/platillos/delete/" + id + "/",
+            /**
+             * * Error corregido
+             */
+            url: dominio + "/platillos/delete/" + $('#txIdPlatilloConfirmacion').val() + "/",
+            /**
+             * * End Error corregido
+             */
             dataType: "json",
             success: function (data) {
                 filtroCategoria(categoria);
@@ -65,11 +72,10 @@ function platillosSelect(idCategoria) {
         success: function (data) {
             let contenido = '';
             $.each(data["resultado"], function (llave, valor) {
-                console.log(valor);
                 contenido += `<div class="cardOfertas efectoCarta">`;
                     contenido += `<div class="front">`;
                         contenido += `<div class="img">`;
-                            contenido += `<img src="http://127.0.0.1:5000/platillos/foto/${valor["imagen"]}" alt="">`;
+                            contenido += `<img src="${dominio2}/platillos/foto/${valor["imagen"]}" alt="">`;
                             contenido += `<div class="back">`;
                                 contenido += `<p>${valor["descripcion"]}</p>`;
                             contenido += `</div>`;
@@ -166,4 +172,11 @@ function modalClose(){
 
 function eliminarPlatilloModal(id, nombreProducto){
     $('#preguntaEliminarPlatillo').html("¿Estas seguro de eliminar el producto "+nombreProducto+"?");
+    /**
+     * * Error corregido
+     */
+    $('#txIdPlatilloConfirmacion').val(id);
+    /**
+     * * End Error corregido
+     */
 }

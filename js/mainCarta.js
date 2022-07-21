@@ -90,11 +90,9 @@ function eliminarDetalleCarrito(idProducto){
         if(Number(element[0]) === idProducto){
             indice = carrito.indexOf(element);
             carrito.splice(indice, 1);
-            console.log(indice);
-            console.log(carrito);
         }
     });
-    carritoSelect();
+    carritoSelect();ac
 }
 
 function carritoSelect(){

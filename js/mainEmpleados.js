@@ -133,7 +133,9 @@ function AdminSelect() {
             var tabla = '';
             $.each(data["resultado"], function (llave, valor) {
                 var template = '<tr>';
-                template += '<td>' + valor["idEmpleado"] + '</td>';
+                /**
+                 * ? Eliminé el valor["idEmpleado"]
+                 */
                 template += '<td>' + valor["nombreEmpleado"] + '</td>';
                 template += '<td>' + valor["correoEmpleado"] + '</td>';
                 template += '<td class="grupoBotones">';
@@ -141,7 +143,7 @@ function AdminSelect() {
                 template += '<button class="btn">';
                 template += '<a href="#" class="btn btn-warning" data-toggle="modal" data-target="#modalCorroborarPassword" onclick="modalCorroborarPassword(' + valor["idEmpleado"] + ')"><i class="gg-info"></i></a>';
                 template += '</button>';
-                if (valor["idEmpleado"] !== 1) {
+                if (valor["idEmpleado"] !== 1 && valor["idEmpleado"] != sessionStorage.getItem("idEmpleado")) {
                     template += '<button class="btn">';
                     template += '<a href="#" class="btn btn-danger" onclick="return empEliminar(' + valor["idEmpleado"] + ')"><i class="gg-trash"></i></a>';
                     template += '</button>';
@@ -242,6 +244,7 @@ function empleadoUpdate() {
             if (url === "/pages/trabajadores.html") {
                 empSelect();
             }
+            llenarPerfil();
         }
     });
 }
